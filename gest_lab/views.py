@@ -5,8 +5,8 @@ from django.shortcuts import render, HttpResponse
 def inicio(request):
     return HttpResponse('inicio')
 
-def registrar(request):
-    return HttpResponse('registrar')
+def solicitar(request):
+    return HttpResponse('solicitar')
 
 def procesar(request):
     return HttpResponse('procesar')
@@ -16,3 +16,6 @@ def validar(request):
 
 def entregar(request):
     return HttpResponse('entregar')
+
+def configuracion(request):
+    return HttpResponse('configuracion')

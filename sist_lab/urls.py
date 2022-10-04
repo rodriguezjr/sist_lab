@@ -21,8 +21,9 @@ from gest_lab import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.inicio, name='inicio'),
-    path('registrar',views.registrar, name='registrar'),
+    path('solicitar',views.solicitar, name='solicitar'),
     path('procesar',views.procesar, name='procesar'),
     path('validar',views.validar, name='validar'),
     path('entregar',views.entregar, name='entregar'),
+    path('configuracion',views.configuracion, name='configuracion'),
 ]
