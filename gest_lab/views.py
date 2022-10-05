@@ -29,3 +29,16 @@ def configuracion(request):
 def pacientes(request):
     #return HttpResponse('pacientes')
     return render(request, 'gest_lab/pacientes.html')
+
+def examenes(request):
+    #return HttpResponse('examenes')
+    return render(request, 'gest_lab/examenes.html')
+
+def insumos(request):
+    #return HttpResponse('insumos')
+    return render(request, 'gest_lab/insumos.html')
+
+def base(request):
+    #return HttpResponse('insumos')
+    arr = ['/solicitar','/procesar','/validar','/entregar']
+    return render(request, 'gest_lab/insumos.html', context={'arr': arr})
