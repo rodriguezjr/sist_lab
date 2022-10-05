@@ -26,4 +26,5 @@ urlpatterns = [
     path('validar',views.validar, name='validar'),
     path('entregar',views.entregar, name='entregar'),
     path('configuracion',views.configuracion, name='configuracion'),
+    path('pacientes',views.pacientes, name='pacientes'),
 ]

@@ -25,4 +25,7 @@ def entregar(request):
 def configuracion(request):
     #return HttpResponse('configuracion')
     return render(request, 'gest_lab/configuracion.html')
-    
+
+def pacientes(request):
+    #return HttpResponse('pacientes')
+    return render(request, 'gest_lab/pacientes.html')
