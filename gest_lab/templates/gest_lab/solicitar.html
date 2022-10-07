@@ -5,13 +5,26 @@
 <div id="paciente" class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">Datos del Paciente</h6>
-		</div>
+	</div>
 		<div class="card-body">
 			<form id="datos_cliente">
 				<div id="cedula" class="row gx-3">
 					<div class="mb-3 col-md-6">
+						
 						<label class="small mb-1" for="nombre">Cedula</label>
-						<input class="form-control" type="text" name="cedula" placeholder="Cedula del cliente">
+							<div class="input-group">
+								<input class="form-control" type="text" name="cedula" placeholder="Cedula del cliente">
+								<div >
+									<button class="btn btn-primary rounded-0" type="button">
+										<i class="fas fa-search"></i>
+									</button>
+								</div >
+								<div >
+									<button class="btn btn-success rounded-end" type="button">
+										<i class="fas fa-user-plus"></i>
+									</button>
+								</div>
+							</div>
 					</div>						
 						<div class="mb-3 col-md-6 align-self-center">
 							<div class="form-check ">
@@ -95,50 +108,66 @@
 			</div>
 		</div>
 		<div class="table-responsive">
-			<div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr role="row"><th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Categoria</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">Examen</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"  aria-label="Office: activate to sort column ascending">Precio</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"  aria-label="Age: activate to sort column ascending">Opcion</th></tr>
-                                    </thead>
-                                    <tbody>                                  
-                                    <tr class="odd">
-                                            <td>Hematologia</td>
-                                            <td>Hematologia Completa</td>
-                                            <td>5.2</td>
-                                            <td>33</td>
-
-                                        </tr><tr class="even">
-                                            <td>Hematologia</td>
-                                            <td>VSG</td>
-                                            <td>2</td>
-                                            <td>47</td>
- 
-                                        </tr><tr class="odd">
-                                            <td>Quimica</td>
-                                            <td>Glicemia</td>
-                                            <td>3</td>
-                                            <td>66</td>
-
-                                        </tr><tr class="even">
-                                            <td>Quimica</td>
-                                            <td>Trigliceridos</td>
-                                            <td>1</td>
-                                            <td>41</td>
-
-                                        </tr><tr class="odd">
-                                            <td>Miscelaneos</td>
-                                            <td>Prueba de Embarazo</td>
-                                            <td>2</td>
-                                            <td>28</td>
-
-                                        </tr></tbody>
-                                </table></div>
-			
+			<div class="col-sm-12">
+				<table class="table" id="dataTable" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Categoria</th>
+							<th>Examen</th>
+							<th>Precio</th>
+							<th> </th>
+						</tr>
+					</thead>
+					<tbody>                                  
+						<tr>
+							<td>Hematologia</td>
+							<td>Hematologia Completa</td>
+							<td>5.2</td>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
+						</tr>
+						<tr>
+							<td>Hematologia</td>
+							<td>VSG</td>
+							<td>2</td>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
+						</tr>
+						<tr>
+							<td>Quimica</td>
+							<td>Glicemia</td>
+							<td>3</td>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
+						</tr>
+						<tr>
+							<td>Quimica</td>
+							<td>Trigliceridos</td>
+							<td>1</td>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
+						</tr>
+						<tr>
+							<td>Miscelaneos</td>
+							<td>Prueba de Embarazo</td>
+							<td>2</td>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="2">Total</th>
+							<th>50</th>
+							<th><button class="btn btn-success btn-icon-split">
+								<span class="icon text-white-50"><i class="fas fa-print"></i></span>
+								<span class="text">Imprimir Solicitud</span>
+							</button>
+							</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 		</div>
-
-
-
-
 	</div>
 </div>
+
+
+
 
 {% endblock %}
