@@ -2,47 +2,62 @@
 {% load static %}
 {% block content %}
 
+<div class="card-body">	
+	<div class="card shadow mb-2" >
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary" >Filtros de Busqueda</h6>
+		</div>
+		<div class="card-body">
+			<div class="row" >
+				<div class="mb-3 col-3">
+					<label class="small mb-1" for="nombre">Cedula</label>
+					<input class="form-control" type="text" name="nombre" placeholder="Nombre del cliente">	
+				</div>
+				<div class="mb-3 col-3">
+					<label class="small mb-1" for="nombre">N de orden</label>
+					<input class="form-control" type="text" name="apellido" placeholder="Numero de orden del examen">	
+				</div>
+				<div class="mb-3 col-3">
+					<label class="small mb-1" for="nombre">Tipo de examen</label>
+					<select class="form-control" id="categoria">
+					<option>Seleccione</option>
+					<option>Hematologia Completa</option>
+					<option>VSG</option>
+					<option>Glicemia</option>
+					<option>Prueba de Embarazo</option>
+					</select>
+				</div>
+				<div class="row" >
+					<div class="col-auto">
+						<label class="small mb-1" for="nombre"> </label>
+						<div>
+							<button class="btn btn-primary btn-icon-split">
+								<span class="icon text-white-50"><i class="fas fa-search"></i></span>
+								<span class="text">Buscar</span>
+							</button>
+						</div>
+					</div>
+					<div class="col-auto">
+						<label class="small mb-1" for="nombre"> </label>
+						<div>
+							<button class="btn btn-warning btn-icon-split">
+								<span class="icon text-white-50"><i class="fas fa-eraser"></i></span>
+								<span class="text">Limpiar</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+
+
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">Examenes pendientes por procesar</h6>		
 	</div>
-	<div class="card-body">
-		
-		<div class="card shadow mb-4" >
-			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary" >Buscar</h6>
-			</div>
-			<div class="card-body">
-				<div class="row gx-3" >
-					<div class="mb-3 col-md-2">
-						<label class="small mb-1" for="nombre">Cedula</label>
-						<input class="form-control" type="text" name="nombre" placeholder="Nombre del cliente">	
-					</div>
-					<div class="mb-3 col-md-2">
-						<label class="small mb-1" for="nombre">N de orden</label>
-						<input class="form-control" type="text" name="apellido" placeholder="Apellido del cliente">	
-					</div>
-					<div class="mb-3 col-md-2">
-						<label class="small mb-1" for="nombre">Tipo de examen</label>
-						<select class="form-control" id="categoria">
-						<option>Seleccione</option>
-						<option>Hematologia Completa</option>
-						<option>VSG</option>
-						<option>Glicemia</option>
-						<option>Prueba de Embarazo</option>
-						</select>
-					</div>
-					<div class="mb-3 col-md-2" >
-						<button class="btn btn-success btn-icon-split">
-							<span class="icon text-white-50"><i class="fas fa-search"></i></span>
-							<span class="text">Buscar</span>
-						</button>
-					</div>
-				</div>
-			</div>		
-		</div>
-	</div>
-	
 </div>
 
 {% endblock %}
