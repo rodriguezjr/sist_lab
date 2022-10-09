@@ -1,5 +1,157 @@
 {% extends 'gest_lab/base.html' %}
 {% load static %}
 {% block content %}
-<h1>validar</h1>
+
+<!-- <div class="card shadow mb-4" >
+	<div class="card-header">
+		<h6 class="m-0 text-primary font-weight-bold">Datos del Paciente</h6>		
+	</div>
+	<div class="card-body">
+		<form id="form_datos_paciente" action="" method="get">
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label class="small mb-1 form-label" for="text_cedula">Cedula</label>
+					<div class="input-group">
+						<input class="form-control" type="text" name="text_cedula" id="text_cedula" placeholder="Cedula del paciente">
+						<button type="submit" class="btn btn-primary rounded-0" type="button" id="btn_buscar">
+							<i class="fas fa-search"></i>
+						</button>
+						<button class="btn btn-success rounded-0" type="button" id="btn_agregar">
+							<i class="fas fa-user-plus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="col-md-6 align-self-end">
+					<div class="form-check my-2">
+						<input class="form-check-input" type="checkbox" name="check_no_cedulado" id="check_no_cedulado" value="True">
+						<label class="form-check-label" for="check_no_cedulado">No Cedulado</label>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label class="form-label small mb-1" for="text_nombre_cliente">Nombre</label>
+					<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label small mb-1" for="text_apellido_cliente">Apellido</label>
+					<input class="form-control" type="text" name="text_apellido_cliente" id="text_apellido_cliente" placeholder="Apellido del Cliente">
+				</div>
+			</div>	
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label class="form-label small mb-1" for="text_fecha_nacimiento">Fecha de nacimiento</label>
+					<input class="form-control" type="date" name="text_fecha_nacimiento" id="text_fecha_nacimiento" placeholder="dd/mm/aaaa">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label small mb-1" for="radio_sexo">Sexo</label>
+					<div class="my-1">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_femenino" value="F">
+							<label class="form-check-label" for="radio_sexo_femenino">Femenino</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_masculino" value="M">
+							<label class="form-check-label" for="radio_sexo_masculino">Masculino</label>
+						</div>
+					</div>
+				</div>				
+			</div>	
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label class="form-label small mb-1" for="text_telefono_cliente">Telefono</label>
+					<input class="form-control" type="tel" name="text_telefono_cliente" id="text_telefono_cliente" placeholder="0XXX-XXXXXXX">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label small mb-1" for="text_direccion_cliente">Direccion</label>
+					<input class="form-control" type="text" name="text_direccion_cliente" id="text_direccion_cliente" placeholder="Localidad, Parte de la Ciudad, Estado">
+				</div>
+			</div>			
+		</form>		
+	</div>
+</div> -->
+
+<div class="card shadow">
+	<div class="card-header pb-0 border-bottom-0">
+		<ul class="nav nav-tabs text-primary font-weight-bold" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="tab_pacientes" data-toggle="tab" href="#tab_pacientes_1" role="tab" >Datos Paciente</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="tab_examenes" data-toggle="tab" href="#tab_examenes_1" role="tab">Examenes a Realizar</a>
+			</li>
+		</ul>
+	</div>
+	<div class="card-body">
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="tab_pacientes_1" role="tabpanel" aria-labelledby="tab_pacientes">
+				<form id="form_datos_paciente" action="" method="get">
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="text_cedula">Cedula</label>
+							<div class="input-group">
+								<input class="form-control" type="text" name="text_cedula" id="text_cedula" placeholder="Cedula del paciente">
+								<button type="submit" class="btn btn-primary rounded-0" type="button" id="btn_buscar">
+									<i class="fas fa-search"></i>
+								</button>
+								<button class="btn btn-success rounded-0" type="button" id="btn_agregar">
+									<i class="fas fa-user-plus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="col-md-6 align-self-end">
+							<div class="form-check my-2">
+								<input class="form-check-input" type="checkbox" name="check_no_cedulado" id="check_no_cedulado" value="True">
+								<label class="form-check-label" for="check_no_cedulado">No Cedulado</label>
+							</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="form-label small mb-1" for="text_nombre_cliente">Nombre</label>
+							<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente">
+						</div>
+						<div class="col-md-6">
+							<label class="form-label small mb-1" for="text_apellido_cliente">Apellido</label>
+							<input class="form-control" type="text" name="text_apellido_cliente" id="text_apellido_cliente" placeholder="Apellido del Cliente">
+						</div>
+					</div>	
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="form-label small mb-1" for="text_fecha_nacimiento">Fecha de nacimiento</label>
+							<input class="form-control" type="date" name="text_fecha_nacimiento" id="text_fecha_nacimiento" placeholder="dd/mm/aaaa">
+						</div>
+						<div class="col-md-6">
+							<label class="form-label small mb-1" for="radio_sexo">Sexo</label>
+							<div class="my-1">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_femenino" value="F">
+									<label class="form-check-label" for="radio_sexo_femenino">Femenino</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_masculino" value="M">
+									<label class="form-check-label" for="radio_sexo_masculino">Masculino</label>
+								</div>
+							</div>
+						</div>				
+					</div>	
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="form-label small mb-1" for="text_telefono_cliente">Telefono</label>
+							<input class="form-control" type="tel" name="text_telefono_cliente" id="text_telefono_cliente" placeholder="0XXX-XXXXXXX">
+						</div>
+						<div class="col-md-6">
+							<label class="form-label small mb-1" for="text_direccion_cliente">Direccion</label>
+							<input class="form-control" type="text" name="text_direccion_cliente" id="text_direccion_cliente" placeholder="Localidad, Parte de la Ciudad, Estado">
+						</div>
+					</div>			
+				</form>		
+
+
+			</div>
+			<div class="tab-pane fade" id="tab_examenes_1" role="tabpanel" aria-labelledby="tab_examenes">.sdg..</div>
+		</div>
+	</div>
+</div>
+
 {% endblock %}
