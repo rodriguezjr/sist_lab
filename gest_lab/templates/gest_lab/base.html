@@ -53,7 +53,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Examenes
+                Examanes
             </div>
 
             <!-- Nav Item - pacientes -->
@@ -64,13 +64,13 @@
             </li>
 
             <!-- Nav Item - examenes Collapse Menu -->
-            <li class="nav-item {% if request.path == '/solicitar' %}active{% endif %}">
+            <li class="nav-item {% if request.path == dir_ex %}active{% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-vial"></i>
                     <span>Examenes</span>
                 </a>
-                <div id="collapseUtilities" class="collapse {% if request.path in arr %}show{% endif %}" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse {% if request.path == dir_ex %}show{% endif %}" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Opciones de examenes:</h6> -->
@@ -90,17 +90,17 @@
                 Ajustes
             </div>
             <!-- Nav Item - configuracion -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == dir_conf %}active{% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configuracion</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse {% if request.path == dir_conf %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
-                        <a class="collapse-item" href="{% url 'examenes' %}">Examenes</a>
-                        <a class="collapse-item" href="{% url 'insumos' %}">Insumos</a>
+                        <a class="collapse-item {% if request.path == '/examenes' %}active{% endif %}" href="{% url 'examenes' %}">Examenes</a>
+                        <a class="collapse-item {% if request.path == '/insumos' %}active{% endif %}" href="{% url 'insumos' %}">Insumos</a>
                     </div>
                 </div>
             </li>
