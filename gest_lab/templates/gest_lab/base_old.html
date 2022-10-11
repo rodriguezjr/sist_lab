@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%static 'gest_lab/index.html'%}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-desktop"></i>
                 </div>
@@ -41,8 +41,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Inicio -->
-            <li class="nav-item">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
                 <a class="nav-link" href="{% url 'inicio' %}">
                     <i class="fas fa-home"></i>
                     <span>Inicio</span></a>
@@ -53,44 +53,31 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Examenes
+                Examanes
             </div>
 
-            <!-- Nav Item - Registrar -->
-            <li class="nav-item">
+            <!-- Nav Item - pacientes -->
+            <li class="nav-item {% if request.path == '/solicitar' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'solicitar' %}">
-                    <i class="fas fa fa-user-plus"></i>
-                    <span>Registrar</span>
-                </a>
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Pacientes</span></a>
             </li>
 
-            <!-- Nav Item - Examenes menu colapsable -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExamenes"
-                    aria-expanded="true" aria-controls="collapseExamenes">
-                    <i class="fas fa-fw fa-vial"></i>
+            <!-- Nav Item - examenes Collapse Menu -->
+            <li class="nav-item {% if request.path == dir_ex %}active{% endif %}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-vial"></i>
                     <span>Examenes</span>
                 </a>
-                <div id="collapseExamenes" class="collapse" aria-labelledby="headingExamenes"
+                <div id="collapseUtilities" class="collapse {% if request.path == dir_ex %}show{% endif %}" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'procesar' %}">Cargar Resultados</a>
-                        <a class="collapse-item" href="{% url 'validar' %}">Validar Resultados</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Resultados menu colapsable -->            
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseResultados"
-                    aria-expanded="true" aria-controls="collapseResultados">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Resultados</span>
-                </a>
-                <div id="collapseResultados" class="collapse" aria-labelledby="headingResultados"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'procesar' %}">Resultados por Entregar</a>
-                        <a class="collapse-item" href="{% url 'validar' %}">Historico</a>
+                        <!-- <h6 class="collapse-header">Opciones de examenes:</h6> -->
+                        <a class="collapse-item {% if request.path == '/solicitar' %}active{% endif %}" href="{% url 'solicitar' %}">Solicitar</a>
+                        <a class="collapse-item {% if request.path == '/procesar' %}active{% endif %}" href="{% url 'procesar' %}">Procesar</a>
+                        <a class="collapse-item {% if request.path == '/validar' %}active{% endif %}" href="{% url 'validar' %}">Validar</a>
+                        <a class="collapse-item {% if request.path == '/entregar' %}active{% endif %}" href="{% url 'entregar' %}">Entregar</a>
                     </div>
                 </div>
             </li>
@@ -100,42 +87,20 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Configuracion
+                Ajustes
             </div>
-
-            <!-- Nav Item - Ajustes menu colapsable -->            
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAjustes"
-                    aria-expanded="true" aria-controls="collapseAjustes">
+            <!-- Nav Item - configuracion -->
+            <li class="nav-item {% if request.path == dir_conf %}active{% endif %}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Examenes</span>
+                    <span>Configuracion</span>
                 </a>
-                <div id="collapseAjustes" class="collapse" aria-labelledby="headingAjustes"
-                    data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse {% if request.path == dir_conf %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'procesar' %}">Examenes</a>
-                        <a class="collapse-item" href="{% url 'validar' %}">Insumos</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="{%static 'gest_lab/login.html'%}">Login</a>
-                        <a class="collapse-item" href="{%static 'gest_lab/register.html'%}">Register</a>
-                        <a class="collapse-item" href="{%static 'gest_lab/forgot-password.html'%}">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="{%static 'gest_lab/blank.html'%}">Blank Page</a>
+                        <!-- <h6 class="collapse-header">Login Screens:</h6> -->
+                        <a class="collapse-item {% if request.path == '/examenes' %}active{% endif %}" href="{% url 'examenes' %}">Examenes</a>
+                        <a class="collapse-item {% if request.path == '/insumos' %}active{% endif %}" href="{% url 'insumos' %}">Insumos</a>
                     </div>
                 </div>
             </li>
@@ -162,6 +127,8 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -180,7 +147,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-<!--                     <form
+                   <!--  <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -343,7 +310,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Junior Rodriguez</span>
                                 <img class="img-profile rounded-circle"
                                     src="{%static 'gest_lab/img/undraw_profile.svg'%}">
                             </a>
@@ -377,24 +344,20 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    {%block content%}
-                    {% endblock%}
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
+               {%block content%}
+               {% endblock%}
+               </div>
+               
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+<!--             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; rodriguezjr 2022</span>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
             <!-- End of Footer -->
 
         </div>
@@ -422,7 +385,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{%static 'gest_lab/login.html'%}">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -437,6 +400,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{%static 'gest_lab/js/sb-admin-2.min.js'%}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{%static 'gest_lab/vendor/chart.js/Chart.min.js'%}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{%static 'gest_lab/js/demo/chart-area-demo.js'%}"></script>
+    <script src="{%static 'gest_lab/js/demo/chart-pie-demo.js'%}"></script>
 
 </body>
 
