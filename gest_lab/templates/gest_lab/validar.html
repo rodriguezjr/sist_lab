@@ -91,7 +91,7 @@
 						<div class="col-md-6">
 							<label class="small mb-1 form-label" for="text_cedula">Cedula</label>
 							<div class="input-group">
-								<input class="form-control" type="text" name="text_cedula" id="text_cedula" placeholder="Cedula del paciente">
+								<input class="form-control" type="text" name="text_cedula" id="text_cedula" placeholder="Cedula del paciente" value="{{cli.0.cedula}}">
 								<button type="submit" class="btn btn-primary rounded-0" type="button" id="btn_buscar">
 									<i class="fas fa-search"></i>
 								</button>
@@ -110,27 +110,27 @@
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_nombre_cliente">Nombre</label>
-							<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente">
+							<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente" value="{{cli.0.nombre}}">
 						</div>
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_apellido_cliente">Apellido</label>
-							<input class="form-control" type="text" name="text_apellido_cliente" id="text_apellido_cliente" placeholder="Apellido del Cliente">
+							<input class="form-control" type="text" name="text_apellido_cliente" id="text_apellido_cliente" placeholder="Apellido del Cliente" value="{{cli.0.apellido}}">
 						</div>
 					</div>	
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_fecha_nacimiento">Fecha de nacimiento</label>
-							<input class="form-control" type="date" name="text_fecha_nacimiento" id="text_fecha_nacimiento" placeholder="dd/mm/aaaa">
+							<input class="form-control" type="date" name="text_fecha_nacimiento" id="text_fecha_nacimiento" placeholder="dd/mm/aaaa" value="{{cli.0.f_nac.year}}-{{cli.0.f_nac.month}}-{{cli.0.f_nac.day}}">
 						</div>
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="radio_sexo">Sexo</label>
 							<div class="my-1">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_femenino" value="F">
+									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_femenino" value="1" {% if cli.0.id_sexo_id == 1 %}Checked=True {% endif %}>
 									<label class="form-check-label" for="radio_sexo_femenino">Femenino</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_masculino" value="M">
+									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_masculino" value="2" {% if cli.0.id_sexo_id == 2 %}Checked=True {% endif %}>
 									<label class="form-check-label" for="radio_sexo_masculino">Masculino</label>
 								</div>
 							</div>
@@ -139,19 +139,59 @@
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_telefono_cliente">Telefono</label>
-							<input class="form-control" type="tel" name="text_telefono_cliente" id="text_telefono_cliente" placeholder="0XXX-XXXXXXX">
+							<input class="form-control" type="tel" name="text_telefono_cliente" id="text_telefono_cliente" placeholder="0XXX-XXXXXXX" value="{{cli.0.telefono}}">
 						</div>
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_direccion_cliente">Direccion</label>
-							<input class="form-control" type="text" name="text_direccion_cliente" id="text_direccion_cliente" placeholder="Localidad, Parte de la Ciudad, Estado">
+							<input class="form-control" type="text" name="text_direccion_cliente" id="text_direccion_cliente" placeholder="Localidad, Parte de la Ciudad, Estado" value="{{cli.0.direccion}}">
 						</div>
 					</div>
-					{{request.POST}}			
+<!-- 					{{request.POST}}			
+					{{cli}}
+					{{cli.0.f_nac.day}}/{{cli.0.f_nac.month}}/{{cli.0.f_nac.year}}
+					{{cli.0.id_sexo_id}}
+					{{edad}}
+					{% if request.method == 'POST' %} -->
+					<div class="row">
+						<div class="col">
+							<a class="btn btn-primary" href="#tab_examenes_1">Seleccionar Examenes</a>
+						</div>
+					</div>
+					
+<!-- 					{% endif %} -->
 				</form>		
 
-
 			</div>
-			<div class="tab-pane fade" id="tab_examenes_1" role="tabpanel" aria-labelledby="tab_examenes">.sdg..</div>
+			<div class="tab-pane fade" id="tab_examenes_1" role="tabpanel" aria-labelledby="tab_examenes">
+				<div class="row">
+					<div class="col-md-3">
+						<p>Cedula: {{cli.0.cedula}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Paciente: {{cli.0.nombre}} {{cli.0.apellido}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Sexo: {% if cli.0.id_sexo_id == 1 %}Femenino{% endif %}{% if cli.0.id_sexo_id == 2 %}Masculino{% endif %}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Edad: {{edad}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<p>Direccion: {{cli.0.direccion}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Telefono: {{cli.0.telefono}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Fecha de Registro: {{anio}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Numero de Orden: </p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

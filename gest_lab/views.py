@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.template import Context
+from gest_lab.models import cliente
+import datetime
 # Create your views here.
 
 def inicio(request):
@@ -16,7 +18,26 @@ def procesar(request):
     
 def validar(request):
     #return HttpResponse('validar')
-    return render(request, 'gest_lab/validar.html',{'dir_ex':'/validar'})
+    cli = {}
+    if request.method == 'POST':
+        cli = cliente.objects.filter(cedula=request.POST['text_cedula']).values()
+        if len(cli) == 0:
+        	c = cliente(cedula=request.POST['text_cedula'],
+        		        nombre=request.POST['text_nombre'],
+        		        apellido=request.POST['text_apellido'],
+        		        f_nac=request.POST['text_fecha_nacimiento'],
+        		        direccion=request.POST['text_direccion'],
+        		        telefono=request.POST['text_telefono'],
+        		        sexo=request.POST['radio_sexo'])
+            c.save()
+    anio = datetime.datetime.now()
+    edad = 0
+    for x in cli:
+    	edad = anio.year - x['f_nac'].year
+    anio2 = anio.strftime("%Y-%m-%d %H:%M")
+
+
+    return render(request, 'gest_lab/validar.html',{'dir_ex':'/validar','cli':cli, 'edad':edad, 'anio':anio2})
     
 def entregar(request):
     #return HttpResponse('entregar')
