@@ -95,7 +95,7 @@
 								<button type="submit" class="btn btn-primary rounded-0" type="button" id="btn_buscar">
 									<i class="fas fa-search"></i>
 								</button>
-								<button class="btn btn-success rounded-0" type="button" id="btn_agregar">
+								<button type="submit" class="btn btn-success rounded-0" type="button" id="btn_agregar">
 									<i class="fas fa-user-plus"></i>
 								</button>
 							</div>
@@ -110,7 +110,7 @@
 					<div class="row mb-3">
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_nombre_cliente">Nombre</label>
-							<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente" value="{{cli.0.nombre}}">
+							<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente" value="{{cli.0.nombre}}" disabled="True">
 						</div>
 						<div class="col-md-6">
 							<label class="form-label small mb-1" for="text_apellido_cliente">Apellido</label>

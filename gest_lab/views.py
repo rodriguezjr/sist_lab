@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.template import Context
-from gest_lab.models import cliente
+from gest_lab.models import cliente, sexo
 import datetime
 # Create your views here.
 
@@ -22,18 +22,20 @@ def validar(request):
     if request.method == 'POST':
         cli = cliente.objects.filter(cedula=request.POST['text_cedula']).values()
         if len(cli) == 0:
-        	c = cliente(cedula=request.POST['text_cedula'],
-        		        nombre=request.POST['text_nombre'],
-        		        apellido=request.POST['text_apellido'],
-        		        f_nac=request.POST['text_fecha_nacimiento'],
-        		        direccion=request.POST['text_direccion'],
-        		        telefono=request.POST['text_telefono'],
-        		        sexo=request.POST['radio_sexo'])
+            c = cliente(cedula=request.POST['text_cedula'],
+                        nombre=request.POST['text_nombre_cliente'],
+                        apellido=request.POST['text_apellido_cliente'],
+                        f_nac=request.POST['text_fecha_nacimiento'],
+                        direccion=request.POST['text_direccion_cliente'],
+                        telefono=request.POST['text_telefono_cliente'],
+                        id_sexo= sexo.objects.get(id=request.POST['radio_sexo'])
+                        )
             c.save()
+
     anio = datetime.datetime.now()
     edad = 0
     for x in cli:
-    	edad = anio.year - x['f_nac'].year
+        edad = anio.year - x['f_nac'].year
     anio2 = anio.strftime("%Y-%m-%d %H:%M")
 
 
