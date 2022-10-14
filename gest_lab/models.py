@@ -3,12 +3,12 @@ from django.db import models
 # Create your models here.
 class cliente(models.Model):
     """tabla de cliente de la bdd"""
-    cedula = models.IntegerField(null=True)
-    nombre = models.TextField()
-    apellido = models.TextField()
+    cedula = models.IntegerField(null=True, unique=True)
+    nombre = models.CharField(max_length=15)
+    apellido = models.CharField(max_length=15)
     f_nac = models.DateField()
-    direccion = models.TextField()
-    telefono = models.TextField()
+    direccion = models.CharField(max_length=30)
+    telefono = models.CharField(max_length=12)
     id_grupo_sanguineo = models.ForeignKey('examen', on_delete=models.CASCADE, null=True, blank=True)
     id_sexo = models.ForeignKey('sexo', on_delete=models.PROTECT)
     def __str__(self):
@@ -17,28 +17,28 @@ class cliente(models.Model):
 class personal(models.Model):
     """tabla de personal de la bdd"""
     cedula = models.IntegerField()
-    nombre = models.TextField()
-    apellido = models.TextField()
+    nombre = models.CharField(max_length=15)
+    apellido = models.CharField(max_length=15)
     id_sexo = models.ForeignKey('sexo', on_delete=models.PROTECT)
     id_cargo = models.ForeignKey('cargo', on_delete=models.CASCADE)
 
 class cargo(models.Model):
     """docstring for cargo"""
-    cargo = models.TextField()
+    cargo = models.CharField(max_length=15)
 
     def __str__(self):
         return self.cargo
 
 class sexo(models.Model):
     """docstring for sexo"""
-    sexo = models.TextField()
+    sexo = models.CharField(max_length=10)
 
     def __str__(self):
         return self.sexo
 
 class analisis(models.Model):
     """docstring for analisis"""
-    nombre = models.TextField()
+    nombre = models.CharField(max_length=50)
     precio = models.FloatField()
 
     def __str__(self):
@@ -52,7 +52,7 @@ class rango(models.Model):
     id_sexo = models.ForeignKey('sexo', on_delete=models.PROTECT, null=True)
     
 class insumo(models.Model):
-    nombre = models.TextField()
+    nombre = models.CharField(max_length=50)
     costo = models.FloatField()
     uso = models.FloatField()
     dosificacion = models.FloatField()
@@ -63,13 +63,13 @@ class insumo(models.Model):
 
 
 class unidad(models.Model):
-    unidad = models.TextField(unique=True)
+    unidad = models.CharField(max_length=10)
     
     def __str__(self):
         return self.unidad
 
 class examen(models.Model):
-    n_orden = models.TextField()
+    n_orden = models.CharField(max_length=15)
     id_cliente = models.ForeignKey('cliente', on_delete=models.PROTECT)
     f_solicitud = models.DateTimeField()
     f_proceso = models.DateTimeField(null=True, blank=True)
@@ -84,7 +84,7 @@ class examen(models.Model):
         return '%s %s %s' % (str(self.n_orden) ,str(self.id_prueba), str(self.id_cliente))
 
 class prueba(models.Model):
-    nombre = models.TextField()
+    nombre = models.CharField(max_length=50)
     grupo = models.BooleanField()
     id_categoria = models.ForeignKey('categoria', on_delete=models.PROTECT)
 
@@ -92,19 +92,19 @@ class prueba(models.Model):
         return self.nombre
 
 class opcion(models.Model):
-    resultado = models.TextField()
+    resultado = models.CharField(max_length=15)
 
     def __str__(self):
         return self.resultado
 
 class categoria(models.Model):
-    nombre = models.TextField()
+    nombre = models.CharField(max_length=15)
 
     def __str__(self):
         return self.nombre
 
 class subcategoria(models.Model):
-    nombre = models.TextField()
+    nombre = models.CharField(max_length=15)
     id_prueba = models.ForeignKey('prueba', on_delete=models.PROTECT)
 
 class cuantitativa(models.Model):

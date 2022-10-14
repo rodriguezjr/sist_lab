@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.template import Context
 from gest_lab.models import cliente, sexo
+from gest_lab.forms import FormularioCliente
 import datetime
 # Create your views here.
 
@@ -10,7 +11,16 @@ def inicio(request):
 
 def solicitar(request):
     #return HttpResponse('solicitar')
-    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar'})
+    #form = FormularioCliente()
+    if request.method == 'POST':
+        form = FormularioCliente(request.POST)
+        if form.is_valid():
+            cli = form.save()
+            cli.save()
+    else:
+        form = FormularioCliente()
+
+    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','form':form})
     
 def procesar(request):
     #return HttpResponse('procesar')
