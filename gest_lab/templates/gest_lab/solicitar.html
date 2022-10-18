@@ -4,61 +4,77 @@
 
 <div id="paciente" class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">Datos del Paciente</h6>
+		<h6 class="m-0 font-weight-bold text-primary">Registro de Examenes</h6>
 	</div>
 		<div class="card-body">
+			{% if not cli %}
 			<form method="POST">
 				{% csrf_token %}
-				<div class="row mb-3">
+				<div class="row">
 					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.cedula.id_for_label}}">{{form.cedula.label}}</label>
-						{{form.cedula}}					
+						<label for="cedula_text" class="form-label">Cedula</label>
+						<div class="input-group">
+						<input class="form-control" type="text" name="cedula_text" id="cedula_text" placeholder="Cedula a Buscar">
+						<button class="btn btn-primary rounded-right">
+							<span class="icon text-white-50">
+								<i class="fas fa-search"></i>
+							</span>
+						</button>
+						</div>
 					</div>
-					<div class="col-md-6">
-						<!-- check para no cedulado  -->
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
-						{{form.nombre}}						
-					</div>
-					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.apellido.id_for_label}}">{{form.apellido.label}}</label>
-						{{form.apellido}}						
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.f_nac.id_for_label}}">{{form.f_nac.label}}</label>
-							<div>
-								{{form.f_nac}}
-							</div>			
-					</div>
-					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.id_sexo.id_for_label}}">{{form.id_sexo.label}}</label>
-						<div>
-							<div class="form-check form-check-inline">
-								{% for x in form.id_sexo %}
-									{{x}}
-									<!-- <label class="form-check-label" for="{{x.id_for_label}}">{{x.label}}</label> -->
-								{% endfor %}
-							</div>
-						</div>	
+					<div class="cold-md-2 d-inline align-self-end">
+						<div class="d-inline align-self-end">
+							<a class="btn btn-success btn-icon-split">
+								<span class="icon text-white-50">
+									<i class="fas fa-user-plus"></i>
+								</span>
+								<span class="text">Agregar Nuevo</span>
+							</a>
+						</div>
 					</div>
 				</div>
-				<div class="row mb-3">
-					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.telefono.id_for_label}}">{{form.telefono.label}}</label>
-						{{form.telefono}}							
-					</div>
-					<div class="col-md-6">
-						<label class="small mb-1 form-label" for="{{form.direccion.id_for_label}}">{{form.direccion.label}}</label>
-						{{form.direccion}}							
-					</div>
-				</div>
-				<button type="submit"> boton </button>
 			</form>
+			{% endif %}
+            {% if cli %}
+			<div>
+				<div class="row">
+					<div class="col-md-3">
+						<p>Cedula: {{cli.0.cedula}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Paciente: {{cli.0.nombre}} {{cli.0.apellido}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Sexo: {% if cli.0.id_sexo_id == 1 %}Femenino{% endif %}{% if cli.0.id_sexo_id == 2 %}Masculino{% endif %}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Edad: {{cli.0.edad}}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<p>Direccion: {{cli.0.direccion}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Telefono: {{cli.0.telefono}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Fecha de Registro: {{fecha}}</p>
+					</div>
+					<div class="col-md-3">
+						<p>Numero de Orden: </p>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="row">
+					<div class="col">
+						
+					</div>
+				</div>
+			</div>
+            {% endif %}
+            {{cli}}
 		</div>
 	</div>
 </div>

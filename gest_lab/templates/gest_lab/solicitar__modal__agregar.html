@@ -1,0 +1,76 @@
+{% extends 'gest_lab/base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="paciente" class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Datos del Paciente</h6>
+	</div>
+		<div class="card-body">
+			<form method="POST">
+				{% csrf_token %}
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.cedula.id_for_label}}">{{form.cedula.label}}</label>
+						{{form.cedula}}					
+					</div>
+					<div class="col-md-6">
+						<!-- check para no cedulado  -->
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
+						{{form.nombre}}						
+					</div>
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.apellido.id_for_label}}">{{form.apellido.label}}</label>
+						{{form.apellido}}						
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.f_nac.id_for_label}}">{{form.f_nac.label}}</label>
+							<div class="d-flex justify-content-center">
+								{{form.f_nac}}
+							</div>			
+					</div>
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.id_sexo.id_for_label}}">{{form.id_sexo.label}}</label>
+						<div>
+							<div class="form-check form-check-inline">
+								{% for x in form.id_sexo %}
+									{{x}}
+									<!-- <label class="form-check-label" for="{{x.id_for_label}}">{{x.label}}</label> -->
+								{% endfor %}
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.telefono.id_for_label}}">{{form.telefono.label}}</label>
+						{{form.telefono}}							
+					</div>
+					<div class="col-md-6">
+						<label class="small mb-1 form-label" for="{{form.direccion.id_for_label}}">{{form.direccion.label}}</label>
+						{{form.direccion}}							
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="d-flex justify-content-center">
+						<button type="submit" class="btn btn-primary"> Guardar Cliente </button>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

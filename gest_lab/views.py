@@ -12,15 +12,26 @@ def inicio(request):
 def solicitar(request):
     #return HttpResponse('solicitar')
     #form = FormularioCliente()
+    # if request.method == 'POST':
+    #     form = FormularioCliente(request.POST)
+    #     if form.is_valid():
+    #         cli = form.save()
+    #         cli.save()
+    # else:
+    #     form = FormularioCliente()
+    persona = {}
     if request.method == 'POST':
-        form = FormularioCliente(request.POST)
-        if form.is_valid():
-            cli = form.save()
-            cli.save()
+        if len(persona) == 0:
+            persona = cliente.objects.filter(cedula=request.POST['cedula_text']).values()
     else:
-        form = FormularioCliente()
+        persona = {}
 
-    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','form':form})
+    fecha_dt = datetime.datetime.now()
+    for x in persona:
+        x['edad'] = fecha_dt.year - x['f_nac'].year
+    fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
+
+    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','cli':persona, 'fecha':fecha})
     
 def procesar(request):
     #return HttpResponse('procesar')
