@@ -80,6 +80,7 @@ class examen(models.Model):
     validado_id_personal = models.ForeignKey('personal', related_name='validado_por', on_delete=models.PROTECT, null=True, blank=True)
     entrega_id_personal = models.ForeignKey('personal', related_name='entragado_por', on_delete=models.PROTECT, null=True, blank=True)
     id_prueba = models.ForeignKey('prueba', on_delete=models.PROTECT)
+    id_analisis = models.ForeignKey('analisis', on_delete=models.PROTECT)
     def __str__(self):
         return '%s %s %s' % (str(self.n_orden) ,str(self.id_prueba), str(self.id_cliente))
 
