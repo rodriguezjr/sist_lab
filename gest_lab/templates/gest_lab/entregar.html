@@ -1,5 +1,50 @@
 {% extends 'gest_lab/base.html' %}
 {% load static %}
 {% block content %}
-<h1>entregar</h1>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Filtros de Busqueda</h6>		
+	</div>
+	<div class="card-body">
+		<form method="GET">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-3">
+				<label class="form-label" for="cedula">Cedula</label>
+				<input class="form-control" type="text" name="cedula" placeholder="Cedula del cliente">					
+			</div>
+			<div class="col-md-3">
+				<label class="form-label" for="n_orden">Numero de Orden</label>
+				<input class="form-control" type="text" name="n_orden" placeholder="n_orden del cliente">		
+			</div>
+			<div class="col-md-3">
+				<label class="form-label" for="t_examen">Tipo de examen</label>
+				<select class="form-control" type="text" name="t_examen" placeholder="n_orden del cliente">
+					<option value="">Seleccione una opcion</option>
+					{% for a in analisis %}
+						<option value="{{a.id}}">{{a.nombre}}</option>
+					{% endfor %}
+				</select>				
+			</div>
+			<div class="col-md-3 d-inline align-self-end mt-2">
+				<div class="d-md-inline">
+					<button class="btn btn-primary btn-icon-split ">
+						<span class="icon text-white-50"><i class="fas fa-search"></i></span>
+						<span class="text">Buscar</span>
+					</button>
+					<button type="reset" class="btn btn-warning btn-icon-split">
+						<span class="icon text-white-50"><i class="fas fa-eraser"></i></span>
+						<span class="text">Limpiar</span>
+					</button>
+				</div>				
+			</div>
+		</div>
+		</form>
+		<!-- {{analisis}} -->
+		{{l_examenes}}
+		<!-- {{query}} -->
+	</div>
+</div>
+
 {% endblock %}

@@ -2,198 +2,48 @@
 {% load static %}
 {% block content %}
 
-<!-- <div class="card shadow mb-4" >
-	<div class="card-header">
-		<h6 class="m-0 text-primary font-weight-bold">Datos del Paciente</h6>		
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Filtros de Busqueda</h6>		
 	</div>
 	<div class="card-body">
-		<form id="form_datos_paciente" action="" method="get">
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label class="small mb-1 form-label" for="text_cedula">Cedula</label>
-					<div class="input-group">
-						<input class="form-control" type="text" name="text_cedula" id="text_cedula" placeholder="Cedula del paciente">
-						<button type="submit" class="btn btn-primary rounded-0" type="button" id="btn_buscar">
-							<i class="fas fa-search"></i>
-						</button>
-						<button class="btn btn-success rounded-0" type="button" id="btn_agregar">
-							<i class="fas fa-user-plus"></i>
-						</button>
-					</div>
-				</div>
-				<div class="col-md-6 align-self-end">
-					<div class="form-check my-2">
-						<input class="form-check-input" type="checkbox" name="check_no_cedulado" id="check_no_cedulado" value="True">
-						<label class="form-check-label" for="check_no_cedulado">No Cedulado</label>
-					</div>
-				</div>
+		<form method="GET">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-3">
+				<label class="form-label" for="cedula">Cedula</label>
+				<input class="form-control" type="text" name="cedula" placeholder="Cedula del cliente">					
 			</div>
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label class="form-label small mb-1" for="text_nombre_cliente">Nombre</label>
-					<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente">
-				</div>
-				<div class="col-md-6">
-					<label class="form-label small mb-1" for="text_apellido_cliente">Apellido</label>
-					<input class="form-control" type="text" name="text_apellido_cliente" id="text_apellido_cliente" placeholder="Apellido del Cliente">
-				</div>
-			</div>	
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label class="form-label small mb-1" for="text_fecha_nacimiento">Fecha de nacimiento</label>
-					<input class="form-control" type="date" name="text_fecha_nacimiento" id="text_fecha_nacimiento" placeholder="dd/mm/aaaa">
-				</div>
-				<div class="col-md-6">
-					<label class="form-label small mb-1" for="radio_sexo">Sexo</label>
-					<div class="my-1">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_femenino" value="F">
-							<label class="form-check-label" for="radio_sexo_femenino">Femenino</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_masculino" value="M">
-							<label class="form-check-label" for="radio_sexo_masculino">Masculino</label>
-						</div>
-					</div>
+			<div class="col-md-3">
+				<label class="form-label" for="n_orden">Numero de Orden</label>
+				<input class="form-control" type="text" name="n_orden" placeholder="n_orden del cliente">		
+			</div>
+			<div class="col-md-3">
+				<label class="form-label" for="t_examen">Tipo de examen</label>
+				<select class="form-control" type="text" name="t_examen" placeholder="n_orden del cliente">
+					<option value="">Seleccione una opcion</option>
+					{% for a in analisis %}
+						<option value="{{a.id}}">{{a.nombre}}</option>
+					{% endfor %}
+				</select>				
+			</div>
+			<div class="col-md-3 d-inline align-self-end mt-2">
+				<div class="d-md-inline">
+					<button class="btn btn-primary btn-icon-split ">
+						<span class="icon text-white-50"><i class="fas fa-search"></i></span>
+						<span class="text">Buscar</span>
+					</button>
+					<button type="reset" class="btn btn-warning btn-icon-split">
+						<span class="icon text-white-50"><i class="fas fa-eraser"></i></span>
+						<span class="text">Limpiar</span>
+					</button>
 				</div>				
-			</div>	
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label class="form-label small mb-1" for="text_telefono_cliente">Telefono</label>
-					<input class="form-control" type="tel" name="text_telefono_cliente" id="text_telefono_cliente" placeholder="0XXX-XXXXXXX">
-				</div>
-				<div class="col-md-6">
-					<label class="form-label small mb-1" for="text_direccion_cliente">Direccion</label>
-					<input class="form-control" type="text" name="text_direccion_cliente" id="text_direccion_cliente" placeholder="Localidad, Parte de la Ciudad, Estado">
-				</div>
-			</div>			
-		</form>		
-	</div>
-</div> -->
-
-<div class="card shadow">
-	<div class="card-header pb-0 border-bottom-0">
-		<ul class="nav nav-tabs text-primary font-weight-bold" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" id="tab_pacientes" data-toggle="tab" href="#tab_pacientes_1" role="tab" >Datos Paciente</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="tab_examenes" data-toggle="tab" href="#tab_examenes_1" role="tab">Examenes a Realizar</a>
-			</li>
-		</ul>
-	</div>
-	<div class="card-body">
-		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="tab_pacientes_1" role="tabpanel" aria-labelledby="tab_pacientes">
-				<form id="form_datos_paciente" action="" method="POST">
-					{% csrf_token %}
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="small mb-1 form-label" for="text_cedula">Cedula</label>
-							<div class="input-group">
-								<input class="form-control" type="text" name="text_cedula" id="text_cedula" placeholder="Cedula del paciente" value="{{cli.0.cedula}}">
-								<button type="submit" class="btn btn-primary rounded-0" type="button" id="btn_buscar">
-									<i class="fas fa-search"></i>
-								</button>
-								<button type="submit" class="btn btn-success rounded-0" type="button" id="btn_agregar">
-									<i class="fas fa-user-plus"></i>
-								</button>
-							</div>
-						</div>
-						<div class="col-md-6 align-self-end">
-							<div class="form-check my-2">
-								<input class="form-check-input" type="checkbox" name="check_no_cedulado" id="check_no_cedulado" value="True">
-								<label class="form-check-label" for="check_no_cedulado">No Cedulado</label>
-							</div>
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="form-label small mb-1" for="text_nombre_cliente">Nombre</label>
-							<input class="form-control" type="text" name="text_nombre_cliente" id="text_nombre_cliente" placeholder="Nombre del Cliente" value="{{cli.0.nombre}}" disabled="True">
-						</div>
-						<div class="col-md-6">
-							<label class="form-label small mb-1" for="text_apellido_cliente">Apellido</label>
-							<input class="form-control" type="text" name="text_apellido_cliente" id="text_apellido_cliente" placeholder="Apellido del Cliente" value="{{cli.0.apellido}}">
-						</div>
-					</div>	
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="form-label small mb-1" for="text_fecha_nacimiento">Fecha de nacimiento</label>
-							<input class="form-control" type="date" name="text_fecha_nacimiento" id="text_fecha_nacimiento" placeholder="dd/mm/aaaa" value="{{cli.0.f_nac.year}}-{{cli.0.f_nac.month}}-{{cli.0.f_nac.day}}">
-						</div>
-						<div class="col-md-6">
-							<label class="form-label small mb-1" for="radio_sexo">Sexo</label>
-							<div class="my-1">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_femenino" value="1" {% if cli.0.id_sexo_id == 1 %}Checked=True {% endif %}>
-									<label class="form-check-label" for="radio_sexo_femenino">Femenino</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="radio_sexo" id="radio_sexo_masculino" value="2" {% if cli.0.id_sexo_id == 2 %}Checked=True {% endif %}>
-									<label class="form-check-label" for="radio_sexo_masculino">Masculino</label>
-								</div>
-							</div>
-						</div>				
-					</div>	
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="form-label small mb-1" for="text_telefono_cliente">Telefono</label>
-							<input class="form-control" type="tel" name="text_telefono_cliente" id="text_telefono_cliente" placeholder="0XXX-XXXXXXX" value="{{cli.0.telefono}}">
-						</div>
-						<div class="col-md-6">
-							<label class="form-label small mb-1" for="text_direccion_cliente">Direccion</label>
-							<input class="form-control" type="text" name="text_direccion_cliente" id="text_direccion_cliente" placeholder="Localidad, Parte de la Ciudad, Estado" value="{{cli.0.direccion}}">
-						</div>
-					</div>
-<!-- 					{{request.POST}}			
-					{{cli}}
-					{{cli.0.f_nac.day}}/{{cli.0.f_nac.month}}/{{cli.0.f_nac.year}}
-					{{cli.0.id_sexo_id}}
-					{{edad}}
-					{% if request.method == 'POST' %} -->
-					<div class="row">
-						<div class="col">
-							<a class="btn btn-primary" href="#tab_examenes_1">Seleccionar Examenes</a>
-						</div>
-					</div>
-					
-<!-- 					{% endif %} -->
-				</form>		
-
-			</div>
-			<div class="tab-pane fade" id="tab_examenes_1" role="tabpanel" aria-labelledby="tab_examenes">
-				<div class="row">
-					<div class="col-md-3">
-						<p>Cedula: {{cli.0.cedula}}</p>
-					</div>
-					<div class="col-md-3">
-						<p>Paciente: {{cli.0.nombre}} {{cli.0.apellido}}</p>
-					</div>
-					<div class="col-md-3">
-						<p>Sexo: {% if cli.0.id_sexo_id == 1 %}Femenino{% endif %}{% if cli.0.id_sexo_id == 2 %}Masculino{% endif %}</p>
-					</div>
-					<div class="col-md-3">
-						<p>Edad: {{edad}}</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<p>Direccion: {{cli.0.direccion}}</p>
-					</div>
-					<div class="col-md-3">
-						<p>Telefono: {{cli.0.telefono}}</p>
-					</div>
-					<div class="col-md-3">
-						<p>Fecha de Registro: {{anio}}</p>
-					</div>
-					<div class="col-md-3">
-						<p>Numero de Orden: </p>
-					</div>
-				</div>
 			</div>
 		</div>
+		</form>
+		<!-- {{analisis}} -->
+		{{l_examenes}}
+		<!-- {{query}} -->
 	</div>
 </div>
-
 {% endblock %}
