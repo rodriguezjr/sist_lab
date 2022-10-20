@@ -7,6 +7,7 @@ from gest_lab.models import Sexo
 from gest_lab.models import Examen
 from gest_lab.models import Rango
 from gest_lab.models import Insumo
+from gest_lab.models import PruebaInsumo
 from gest_lab.models import Unidad
 from gest_lab.models import Solicitud
 from gest_lab.models import Prueba
@@ -25,8 +26,8 @@ from gest_lab.models import ResultadoDescriptivo
 class ClienteAdmin(admin.ModelAdmin):
     list_display=('nombre','apellido','telefono')
 
-# class examen_pruebaAdmin(admin.ModelAdmin):
-#     list_display=('examen','prueba')
+class PruebaInsumoAdmin(admin.ModelAdmin):
+    list_display=('prueba','insumos')
 
 class PruebaAdmin(admin.ModelAdmin):
     list_display=('nombre','categoria')
@@ -34,14 +35,14 @@ class PruebaAdmin(admin.ModelAdmin):
 class CuantitativaAdmin(admin.ModelAdmin):
     list_display=('prueba','unidad')
 
-class cualitativa_opcionAdmin(admin.ModelAdmin):
-    list_display=('cualitativa','opcion')
-
 class ResultadoCualitativoAdmin(admin.ModelAdmin):
-	list_display=('solicitud', 'cualitativa_opcion')
+    list_display=('solicitud', 'cualitativa_opcion')
 
 class ResultadoCuantitativoAdmin(admin.ModelAdmin):
-	list_display=('solicitud', 'valor')
+    list_display=('solicitud', 'valor')
+
+class CualitativaOpcionAdmin(admin.ModelAdmin):
+    list_display=('cualitativa', 'opcion')
 
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Usuario)
@@ -59,9 +60,9 @@ admin.site.register(Subcategoria)
 admin.site.register(Cuantitativa, CuantitativaAdmin)
 admin.site.register(Cualitativa)
 admin.site.register(Descriptiva)
-# admin.site.register(cualitativa_opcion, cualitativa_opcionAdmin)
 admin.site.register(ResultadoCualitativo, ResultadoCualitativoAdmin)
 admin.site.register(ResultadoCuantitativo, ResultadoCuantitativoAdmin)
 admin.site.register(ResultadoDescriptivo)
-# admin.site.register(examen_prueba, examen_pruebaAdmin)
-# admin.site.register(insumo_prueba)
+admin.site.register(PruebaInsumo, PruebaInsumoAdmin)
+admin.site.register(CualitativaOpcion, CualitativaOpcionAdmin)
+

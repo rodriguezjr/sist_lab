@@ -107,9 +107,8 @@ class Prueba(models.Model):
 
 class Insumo(models.Model):
     nombre = models.CharField(max_length=50)
-    costo = models.FloatField()
-    uso = models.FloatField()
-    dosificacion = models.FloatField()
+    limite_alerta = models.FloatField()
+    unidades = models.FloatField()
     unidad = models.ForeignKey('Unidad', on_delete=models.PROTECT, null=True, blank=True)
     
     def __str__(self):
@@ -117,7 +116,7 @@ class Insumo(models.Model):
 
 
 class PruebaInsumo(models.Model):
-    pruebas = models.ForeignKey('Prueba', on_delete=models.CASCADE)
+    prueba = models.ForeignKey('Prueba', on_delete=models.CASCADE)
     insumos = models.ForeignKey('Insumo', on_delete=models.CASCADE)
     cantidad = models.FloatField()
 
