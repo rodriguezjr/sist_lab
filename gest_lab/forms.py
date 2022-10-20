@@ -1,9 +1,9 @@
 from django import forms
-from gest_lab.models import cliente, sexo
+from gest_lab.models import Cliente, Sexo
 import datetime
 
 class FormularioCliente(forms.ModelForm):
-    id_sexo=forms.ModelChoiceField(queryset=sexo.objects.all(), label='Sexo', widget=forms.RadioSelect(attrs={ 'class': 'form-check-input'}))
+    sexo=forms.ModelChoiceField(queryset=Sexo.objects.all(), label='Sexo', widget=forms.RadioSelect(attrs={ 'class': 'form-check-input'}))
     cedula = forms.CharField(required=True, label='Cedula', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     nombre = forms.CharField(required=True, label='Nombre', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     apellido = forms.CharField(required=True, label='Apellido', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
@@ -14,5 +14,5 @@ class FormularioCliente(forms.ModelForm):
 
 
     class Meta():
-        model = cliente
-        fields =['cedula','nombre','apellido','f_nac','direccion','telefono','id_sexo']
+        model = Cliente
+        fields =['cedula','nombre','apellido','f_nac','direccion','telefono','sexo']

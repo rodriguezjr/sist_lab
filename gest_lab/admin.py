@@ -1,69 +1,67 @@
 from django.contrib import admin
 
-from gest_lab.models import cliente
-from gest_lab.models import personal
-from gest_lab.models import cargo
-from gest_lab.models import sexo
-from gest_lab.models import analisis
-from gest_lab.models import rango
-from gest_lab.models import insumo
-from gest_lab.models import unidad
-from gest_lab.models import examen
-from gest_lab.models import prueba
-from gest_lab.models import opcion
-from gest_lab.models import categoria
-from gest_lab.models import subcategoria
-from gest_lab.models import cuantitativa
-from gest_lab.models import cualitativa
-from gest_lab.models import descriptiva
-from gest_lab.models import cualitativa_opcion
-from gest_lab.models import resultado_cualitativo
-from gest_lab.models import resultado_cuantitativo
-from gest_lab.models import resultado_descriptivo
-from gest_lab.models import analisis_prueba
-from gest_lab.models import insumo_prueba
+from gest_lab.models import Cliente
+from gest_lab.models import Usuario
+from gest_lab.models import Cargo
+from gest_lab.models import Sexo
+from gest_lab.models import Examen
+from gest_lab.models import Rango
+from gest_lab.models import Insumo
+from gest_lab.models import Unidad
+from gest_lab.models import Solicitud
+from gest_lab.models import Prueba
+from gest_lab.models import Opcion
+from gest_lab.models import Categoria
+from gest_lab.models import Subcategoria
+from gest_lab.models import Cuantitativa
+from gest_lab.models import Cualitativa
+from gest_lab.models import Descriptiva
+from gest_lab.models import CualitativaOpcion
+from gest_lab.models import ResultadoCualitativo
+from gest_lab.models import ResultadoCuantitativo
+from gest_lab.models import ResultadoDescriptivo
 # Register your models here.
 
-class clienteAdmin(admin.ModelAdmin):
+class ClienteAdmin(admin.ModelAdmin):
     list_display=('nombre','apellido','telefono')
 
-class analisis_pruebaAdmin(admin.ModelAdmin):
-    list_display=('id_analisis','id_prueba')
+# class examen_pruebaAdmin(admin.ModelAdmin):
+#     list_display=('examen','prueba')
 
-class pruebaAdmin(admin.ModelAdmin):
-    list_display=('nombre','id_categoria')
+class PruebaAdmin(admin.ModelAdmin):
+    list_display=('nombre','categoria')
 
-class cuantitativaAdmin(admin.ModelAdmin):
-    list_display=('id_prueba','id_unidad')
+class CuantitativaAdmin(admin.ModelAdmin):
+    list_display=('prueba','unidad')
 
 class cualitativa_opcionAdmin(admin.ModelAdmin):
-    list_display=('id_cualitativa','id_opcion')
+    list_display=('cualitativa','opcion')
 
-class resultado_cualitativoAdmin(admin.ModelAdmin):
-	list_display=('id_examen', 'id_cualitativa_opcion')
+class ResultadoCualitativoAdmin(admin.ModelAdmin):
+	list_display=('solicitud', 'cualitativa_opcion')
 
-class resultado_cuantitativoAdmin(admin.ModelAdmin):
-	list_display=('id_examen', 'valor')
+class ResultadoCuantitativoAdmin(admin.ModelAdmin):
+	list_display=('solicitud', 'valor')
 
-admin.site.register(cliente, clienteAdmin)
-admin.site.register(personal)
-admin.site.register(cargo)
-admin.site.register(sexo)
-admin.site.register(analisis)
-admin.site.register(rango)
-admin.site.register(insumo)
-admin.site.register(unidad)
-admin.site.register(examen)
-admin.site.register(prueba, pruebaAdmin)
-admin.site.register(opcion)
-admin.site.register(categoria)
-admin.site.register(subcategoria)
-admin.site.register(cuantitativa, cuantitativaAdmin)
-admin.site.register(cualitativa)
-admin.site.register(descriptiva)
-admin.site.register(cualitativa_opcion, cualitativa_opcionAdmin)
-admin.site.register(resultado_cualitativo, resultado_cualitativoAdmin)
-admin.site.register(resultado_cuantitativo, resultado_cuantitativoAdmin)
-admin.site.register(resultado_descriptivo)
-admin.site.register(analisis_prueba, analisis_pruebaAdmin)
-admin.site.register(insumo_prueba)
+admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(Usuario)
+admin.site.register(Cargo)
+admin.site.register(Sexo)
+admin.site.register(Examen)
+admin.site.register(Rango)
+admin.site.register(Insumo)
+admin.site.register(Unidad)
+admin.site.register(Solicitud)
+admin.site.register(Prueba, PruebaAdmin)
+admin.site.register(Opcion)
+admin.site.register(Categoria)
+admin.site.register(Subcategoria)
+admin.site.register(Cuantitativa, CuantitativaAdmin)
+admin.site.register(Cualitativa)
+admin.site.register(Descriptiva)
+# admin.site.register(cualitativa_opcion, cualitativa_opcionAdmin)
+admin.site.register(ResultadoCualitativo, ResultadoCualitativoAdmin)
+admin.site.register(ResultadoCuantitativo, ResultadoCuantitativoAdmin)
+admin.site.register(ResultadoDescriptivo)
+# admin.site.register(examen_prueba, examen_pruebaAdmin)
+# admin.site.register(insumo_prueba)

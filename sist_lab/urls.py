@@ -20,15 +20,15 @@ from gest_lab import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.inicio, name='inicio'),
-    path('solicitar',views.solicitar, name='solicitar'),
-    path('procesar',views.procesar, name='procesar'),
-    path('validar',views.validar, name='validar'),
-    path('entregar',views.entregar, name='entregar'),
-    path('configuracion',views.configuracion, name='configuracion'),
-    path('pacientes',views.pacientes, name='pacientes'),
-    path('examenes',views.examenes, name='examenes'),
-    path('insumos',views.insumos, name='insumos'),
-    path('base',views.base, name='base'),
+    path('',views.Inicio, name='inicio'),
+    path('solicitar',views.Solicitar, name='solicitar'),
+    path('procesar',views.Procesar, name='procesar'),
+    path('validar',views.Validar, name='validar'),
+    path('entregar',views.Entregar, name='entregar'),
+    path('configuracion',views.Configuracion, name='configuracion'),
+    path('pacientes',views.Pacientes, name='pacientes'),
+    path('examenes',views.Examenes, name='examenes'),
+    path('insumos',views.Insumos, name='insumos'),
+    path('base',views.Base, name='base'),
 
 ]
