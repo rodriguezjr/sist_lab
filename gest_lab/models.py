@@ -53,7 +53,7 @@ class Examen(models.Model):
         return self.nombre
     
     class Meta():
-        db_table = 'Examenes'
+        verbose_name_plural = 'Examenes'
             
 
 class Rango(models.Model):
@@ -63,17 +63,6 @@ class Rango(models.Model):
     insumo = models.ForeignKey('Insumo', on_delete=models.CASCADE)
     sexo = models.ForeignKey('Sexo', on_delete=models.PROTECT, null=True)
 
-    
-class Insumo(models.Model):
-    nombre = models.CharField(max_length=50)
-    costo = models.FloatField()
-    uso = models.FloatField()
-    dosificacion = models.FloatField()
-    unidad = models.ForeignKey('Unidad', on_delete=models.PROTECT, null=True, blank=True)
-    
-    def __str__(self):
-        return self.nombre
-
 
 class Unidad(models.Model):
     unidad = models.CharField(max_length=10)
@@ -82,7 +71,7 @@ class Unidad(models.Model):
         return self.unidad
 
     class Meta():
-        db_table = 'Unidades'
+        verbose_name_plural = 'Unidades'
 
 
 class Solicitud(models.Model):
@@ -103,18 +92,38 @@ class Solicitud(models.Model):
         return '%s %s %s' % (str(self.n_orden) ,str(self.prueba), str(self.cliente))
     
     class Meta():
-        db_table = 'Solicitudes'
+        verbose_name_plural = 'Solicitudes'
 
 
 class Prueba(models.Model):
     nombre = models.CharField(max_length=50)
     categoria = models.ForeignKey('Categoria', on_delete=models.PROTECT)
     examen = models.ForeignKey('Examen', on_delete=models.PROTECT, null=True, blank=True)
-    insumos = models.ManyToManyField('Insumo')
+    insumos = models.ManyToManyField('Insumo', through='PruebaInsumo')
 
     def __str__(self):
         return self.nombre
 
+
+class Insumo(models.Model):
+    nombre = models.CharField(max_length=50)
+    costo = models.FloatField()
+    uso = models.FloatField()
+    dosificacion = models.FloatField()
+    unidad = models.ForeignKey('Unidad', on_delete=models.PROTECT, null=True, blank=True)
+    
+    def __str__(self):
+        return self.nombre
+
+
+class PruebaInsumo(models.Model):
+    pruebas = models.ForeignKey('Prueba', on_delete=models.CASCADE)
+    insumos = models.ForeignKey('Insumo', on_delete=models.CASCADE)
+    cantidad = models.FloatField()
+
+    class Meta():
+        verbose_name_plural = 'PruebaInsumos'
+        db_table = 'gest_lab_prueba_insumo'
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=15)
@@ -153,7 +162,7 @@ class Opcion(models.Model):
         return self.resultado
 
     class Meta():
-        db_table = 'Opciones'
+        verbose_name_plural = 'Opciones'
 
 
 class CualitativaOpcion(models.Model):
@@ -164,7 +173,8 @@ class CualitativaOpcion(models.Model):
         return ('%s ---> %s' % (str(self.cualitativa),  str(self.opcion))) 
 
     class Meta():
-        db_table = 'CualitativaOpciones'
+        verbose_name_plural = 'CualitativaOpciones'
+        db_table = 'gest_lab_cualitativa_opcion'
 
 
 class ResultadoCualitativo(models.Model):
@@ -175,7 +185,7 @@ class ResultadoCualitativo(models.Model):
         return ('%s ---> %s' % (str(self.solicitud),  str(self.cualitativa_opcion))) 
     
     class Meta():
-        db_table = 'ResultadosCualitativos'
+        verbose_name_plural = 'ResultadosCualitativos'
 
 
 class ResultadoCuantitativo(models.Model):
@@ -183,7 +193,7 @@ class ResultadoCuantitativo(models.Model):
     valor = models.FloatField()
     
     class Meta():
-        db_table = 'ResultadosCuantitativos'
+        verbose_name_plural = 'ResultadosCuantitativos'
 
 
 class ResultadoDescriptivo(models.Model):
@@ -191,7 +201,7 @@ class ResultadoDescriptivo(models.Model):
     resultado = models.TextField()
 
     class Meta():
-        db_table = 'ResultadosDescriptivos'
+        verbose_name_plural = 'ResultadosDescriptivos'
 
 # class examen_prueba(models.Model):
 #     examen = models.ForeignKey('examen', on_delete=models.CASCADE)
