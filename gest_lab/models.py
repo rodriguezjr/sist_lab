@@ -8,8 +8,8 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=15)
     f_nac = models.DateField()
     direccion = models.CharField(max_length=30)
-    telefono = models.CharField(max_length=12)
-    grupo_sanguineo = models.CharField(max_length=4)
+    telefono = models.CharField(max_length=12, null=True, blank=True)
+    grupo_sanguineo = models.CharField(max_length=4, null=True, blank=True)
     sexo = models.ForeignKey('Sexo', on_delete=models.PROTECT)
     
     def __str__(self):

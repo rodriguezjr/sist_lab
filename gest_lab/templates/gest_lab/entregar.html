@@ -16,14 +16,14 @@
 			</div>
 			<div class="col-md-3">
 				<label class="form-label" for="n_orden">Numero de Orden</label>
-				<input class="form-control" type="text" name="n_orden" placeholder="n_orden del cliente">		
+				<input class="form-control" type="text" name="n_orden" placeholder="# de orden de la Solicitud">
 			</div>
 			<div class="col-md-3">
 				<label class="form-label" for="t_examen">Tipo de examen</label>
-				<select class="form-control" type="text" name="t_examen" placeholder="n_orden del cliente">
-					<option value="">Seleccione una opcion</option>
-					{% for a in analisis %}
-						<option value="{{a.id}}">{{a.nombre}}</option>
+				<select class="form-control" type="text" name="t_examen">
+					<option  disabled selected>Seleccione una opcion</option>
+					{% for e in examenes %}
+						<option value="{{e.id}}">{{e.nombre}}</option>
 					{% endfor %}
 				</select>				
 			</div>
@@ -42,8 +42,35 @@
 		</div>
 		</form>
 		<!-- {{analisis}} -->
-		{{l_examenes}}
+		<!-- {{solicitud}} -->
 		<!-- {{query}} -->
+	</div>
+	<div class="card-header">Examenes pendientes cargar resultados</div>
+	<div class="card-body">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th># de orden</th>
+					<th>Cedula del paciente</th>
+					<th>Examen</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for s in solicitud %}
+				<tr>
+					<td>{{s.n_orden}}</td>
+					<td>{{s.cliente__cedula}}</td>
+					<td>{{s.examen__nombre}}</td>
+					<td>
+						<a href="#" class="btn btn-success btn-circle btn-sm">
+							<i class="fas fa-print"></i>
+						</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 </div>
 

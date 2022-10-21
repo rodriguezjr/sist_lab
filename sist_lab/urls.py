@@ -27,7 +27,7 @@ urlpatterns = [
     path('entregar',views.Entregar, name='entregar'),
     path('configuracion',views.Configuracion, name='configuracion'),
     path('pacientes',views.Pacientes, name='pacientes'),
-    path('examenes',views.Examenes, name='examenes'),
+    # path('examenes',views.Examenes, name='examenes'),
     path('insumos',views.Insumos, name='insumos'),
     path('base',views.Base, name='base'),
 
