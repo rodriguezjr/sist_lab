@@ -12,14 +12,15 @@ def Inicio(request):
 
 def Solicitar(request):
     #return HttpResponse('solicitar')
-    #form = FormularioCliente()
-    # if request.method == 'POST':
-    #     form = FormularioCliente(request.POST)
-    #     if form.is_valid():
-    #         cli = form.save()
-    #         cli.save()
-    # else:
-    #     form = FormularioCliente()
+    form = FormularioCliente()
+    if request.method == 'POST':
+        form = FormularioCliente(request.POST)
+        if form.is_valid():
+            cli = form.save()
+            cli.save()
+    else:
+        form = FormularioCliente()
+
     persona = {}
     if request.method == 'GET':
         if len(persona) == 0:
@@ -33,7 +34,7 @@ def Solicitar(request):
         x['edad'] = fecha_dt.year - x['f_nac'].year
     fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
 
-    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','cli':persona, 'fecha':fecha})
+    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','cli':persona, 'fecha':fecha, 'form':form})
    
 def Procesar(request):
     #return HttpResponse('procesar')
