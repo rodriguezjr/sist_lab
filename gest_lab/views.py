@@ -39,6 +39,8 @@ def Solicitar(request):
 def Procesar(request):
     #return HttpResponse('procesar')
     l_examen = Examen.objects.all()
+    l_test = Solicitud.objects.values('examen_id','examen__nombre').filter(f_validado=None,f_entrega=None).annotate(dcount=Count('n_orden')).order_by()
+    print(l_test)
     l_solicitud = Solicitud.objects.all()
     null = None
 
@@ -55,11 +57,12 @@ def Procesar(request):
     else:
         l_solicitud = Solicitud.objects.all()
 
-    return render(request, 'gest_lab/procesar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_examen})
+    return render(request, 'gest_lab/procesar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_test})
     
 def Validar(request):
     #return HttpResponse('validar')
     l_examen = Examen.objects.all()
+    l_test = Solicitud.objects.values('examen_id','examen__nombre').filter(f_validado=None,f_entrega=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
     l_solicitud = Solicitud.objects.all()
     if request.method == 'GET':
         ced = request.GET.get('cedula') if request.GET.get('cedula') != None else ''
@@ -70,12 +73,13 @@ def Validar(request):
         else:
             l_solicitud = Solicitud.objects.values('n_orden','cliente__cedula','examen__nombre').filter(cliente__cedula__startswith=ced,n_orden__endswith=n_ord,examen_id=t_ex,f_validado=None,f_entrega=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
         # print(l_solicitud.query)
-    return render(request, 'gest_lab/validar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_examen})
+    return render(request, 'gest_lab/validar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_test})
 
     
 def Entregar(request):
     #return HttpResponse('entregar')
     l_examen = Examen.objects.all()
+    l_test = Solicitud.objects.values('examen_id','examen__nombre').filter(f_entrega=None).exclude(f_proceso=None).exclude(f_validado=None).annotate(dcount=Count('n_orden')).order_by()
     l_solicitud = Solicitud.objects.all()
     if request.method == 'GET':
         ced = request.GET.get('cedula') if request.GET.get('cedula') != None else ''
@@ -86,7 +90,7 @@ def Entregar(request):
         else:
             l_solicitud = Solicitud.objects.values('n_orden','cliente__cedula','examen__nombre').filter(cliente__cedula__startswith=ced,n_orden__endswith=n_ord,examen_id=t_ex,f_entrega=None).exclude(f_validado=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
         # print(l_solicitud.query)
-    return render(request, 'gest_lab/entregar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_examen})
+    return render(request, 'gest_lab/entregar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_test})
 
     
 def Configuracion(request):

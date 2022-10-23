@@ -74,7 +74,7 @@
 				</div>
 			</div>
             {% endif %}
-            {{cli}}
+            <!-- {{cli}} -->
 		</div>
 	</div>
 </div>
@@ -125,8 +125,10 @@
 								<div>
 									<div class="form-check form-check-inline">
 										{% for x in form.sexo %}
-											{{x}}
+											<div class="mr-2">
+												{{x}}
 											<!-- <label class="form-check-label" for="{{x.id_for_label}}">{{x.label}}</label> -->
+											</div>
 										{% endfor %}
 									</div>
 								</div>	
