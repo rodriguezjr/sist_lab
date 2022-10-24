@@ -117,3 +117,6 @@ def Base(request):
     #return HttpResponse('insumos')
     direcciones = ['solicitar','procesar','validar','entregar']
     return render(request, 'gest_lab/base.html', context={'arr':direcciones})
+
+def Login(request):
+    return render(request, 'gest_lab/login.html')

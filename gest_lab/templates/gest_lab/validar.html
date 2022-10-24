@@ -63,8 +63,8 @@
 					<td>{{s.cliente__cedula}}</td>
 					<td>{{s.examen__nombre}}</td>
 					<td>
-						<a href="#" class="btn btn-success btn-circle btn-sm">
-							<i class="fas fa-search"></i>
+						<a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-target="#exampleModal">
+							<i class="fas fa-file-signature"></i>
 						</a>
 					</td>
 				</tr>
@@ -73,5 +73,202 @@
 		</table>
 	</div>
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<div class="row w-100">
+      		<div class="col-md-4">
+      			<h5 class="modal-title" id="exampleModalLabel"># de orden: 221019-01</h5>
+      		</div>
+        	<div class="col-md-4">
+        		<h5 class="modal-title">CI:24963645</h5>
+        	</div>
+        	<div class="col-md-4">
+        		<h5 class="modal-title">Karla Garcia</h5>
+        	</div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="row">
+        	<div class="col-md-6">
+        		<p>Prueba de Embarazo</p>
+        	</div>
+        	<div class="col-md-6">
+        		<select name="" id="" class="form-control">
+        			<option value="">Seleccione una opcion</option>
+        			<option value="">Positivo</option>
+        			<option value="">Negativo</option>
+        		</select>
+        	</div>
+        </div> -->
+        <div class="container-fluid">
+        <fieldset class="border p-1">
+        	<legend class="w-auto">Hematologia Completa</legend>
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Leucocitos</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="9.3">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">x10³ μl</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Linfocitos</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="39">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">%</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">MID</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="1">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">%</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Neutrofilos</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="60">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">%</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Eritrocitos</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="3.78">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">x10⁶ μl</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Hemoglobina</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="11.1">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">g/dl</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Hematocritos</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="34.8">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">%</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">MCV</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="92.1">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">fl</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">MCH</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="29.5">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">pg</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">MCHC</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="32.6">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">g/dl</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">Plaquetas</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="316">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">x10³ μl</label>
+        	</div>
+        </div>
+
+        <div class="row my-2 w-100">
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">MPV</label>
+        	</div>
+        	<div class="col-md-4">
+        		<input type="text" class="form-control" placeholder="Resultado" value="7.1">
+        	</div>
+        	<div class="col-md-4">
+        		<label for="" class="col-form-label">fl</label>
+        	</div>
+        </div>
+        </fieldset>
+        </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary"> Validar y Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 {% endblock %}
