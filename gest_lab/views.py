@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.template import Context
-from gest_lab.models import Cliente, Sexo, Solicitud, Prueba, Examen
+from gest_lab.models import Cliente, Sexo, Solicitud, Prueba, Examen, Categoria
 from gest_lab.forms import FormularioCliente
 import datetime
 from django.db.models import Count
@@ -22,10 +22,13 @@ def Solicitar(request):
         form = FormularioCliente()
 
     persona = {}
+    l_examen = {}
+    l_categoria = {}
     if request.method == 'GET':
         if len(persona) == 0:
             persona = Cliente.objects.filter(cedula=request.GET.get('cedula_text')).values()
-            #print(request.GET.get('cedula_text'))
+            l_examen = Examen.objects.all()
+            l_categoria = Categoria.objects.all()
     else:
         persona = {}
 
@@ -34,7 +37,7 @@ def Solicitar(request):
         x['edad'] = fecha_dt.year - x['f_nac'].year
     fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
 
-    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','cli':persona, 'fecha':fecha, 'form':form})
+    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria})
    
 def Procesar(request):
     #return HttpResponse('procesar')

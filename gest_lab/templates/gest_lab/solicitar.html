@@ -66,18 +66,68 @@
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="row">
-					<div class="col">
-						
-					</div>
-				</div>
-			</div>
-            {% endif %}
-            <!-- {{cli}} -->
-		</div>
 	</div>
 </div>
+
+
+<div id="examnes" class="card shadow mb-4">
+	<div class="card-header">
+		<div class="row">
+			<div class="col-md-1">
+				<label class="col-form-label font-weight-bold" for="categoria_select">Categoria</label>
+			</div>
+			<div class="col-md-4">					
+				<select id="categoria_select" class="form-control">
+					<option disabled selected>Seleccione una opcion</option>
+					{% for c in categorias %}
+						<option value="{{c.id}}">{{c.nombre}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-1">
+				<label class="col-form-label font-weight-bold" for="examen_select">Examen</label>
+			</div>
+			<div class="col-md-4">
+				<select id="examen_select" class="form-control">
+					<option disabled selected>Seleccione una opcion</option>
+					{% for e in examenes %}
+						<option value="{{e.id}}">{{e.nombre}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-success btn-icon-split" id="agregar_btn" onclick="nuevoExamen()">
+					<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
+					<span class="text">Agregar</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+			<div id="lista_examenes">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Examen a realizar</th>
+							<th>Precio</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+            
+            <!-- {{cli}} -->
+    </div>
+</div>
+
+{% endif %}
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -160,6 +210,13 @@
 </div>
 
 
+<script>
 
+function nuevoExamen(){
+	console.log('examen');
+	var sel = document.getElementById('categoria_select').value;
+	console.log(sel);
+}
+</script>
 
 {% endblock %}
