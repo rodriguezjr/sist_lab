@@ -13,9 +13,9 @@
 
     <!-- Custom fonts for this template-->
     <link href="{%static 'gest_lab/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
-    <link
+<!--     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        rel="stylesheet"> -->
 
     <!-- Custom styles for this template-->
     <link href="{%static 'gest_lab/css/sb-admin-2.css'%}" rel="stylesheet">
@@ -34,16 +34,16 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%static 'gest_lab/index.html'%}">
                 <div class="sidebar-brand-icon">
                     <!-- <i class="fas fa-desktop"></i> -->
-                    <img class="w-100 img-thumbnail" src ="{%static 'gest_lab/img/mathilab_logo.png'%}">
+                    <img class="w-100 img-thumbnail" src ="{%static 'gest_lab/img/mathilab-logo.png'%}">
                 </div>
-                <div class="sidebar-brand-text mx-3">Mathilab-RM Garcia F.P</div>
+                <div class="sidebar-brand-text mx-3">Mathilab-RM Garcia</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Inicio -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'inicio' %}">
                     <i class="fas fa-home"></i>
                     <span>Inicio</span></a>
@@ -58,7 +58,7 @@
             </div>
 
             <!-- Nav Item - Registrar -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == '/solicitar' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'solicitar' %}">
                     <i class="fas fa fa-user-plus"></i>
                     <span>Registrar</span>
@@ -66,32 +66,32 @@
             </li>
 
             <!-- Nav Item - Examenes menu colapsable -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == dir_ex %}active{% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExamenes"
                     aria-expanded="true" aria-controls="collapseExamenes">
                     <i class="fas fa-fw fa-vial"></i>
                     <span>Examenes</span>
                 </a>
-                <div id="collapseExamenes" class="collapse" aria-labelledby="headingExamenes"
+                <div id="collapseExamenes" class="collapse {% if request.path == dir_ex %}show{% endif %}" aria-labelledby="headingExamenes"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'procesar' %}">Cargar Resultados</a>
-                        <a class="collapse-item" href="{% url 'validar' %}">Validar Resultados</a>
+                        <a class="collapse-item {% if request.path == '/procesar' %}active{% endif %}" href="{% url 'procesar' %}">Cargar Resultados</a>
+                        <a class="collapse-item {% if request.path == '/validar' %}active{% endif %}" href="{% url 'validar' %}">Validar Resultados</a>
                     </div>
                 </div>
             </li>
             <!-- Nav Item - Resultados menu colapsable -->            
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == dir_res %}active{% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseResultados"
                     aria-expanded="true" aria-controls="collapseResultados">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Resultados</span>
                 </a>
-                <div id="collapseResultados" class="collapse" aria-labelledby="headingResultados"
+                <div id="collapseResultados" class="collapse {% if request.path == dir_res %}show{% endif %}" aria-labelledby="headingResultados"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'entregar' %}">Resultados por Entregar</a>
-                        <a class="collapse-item" href="{% url 'entregar' %}">Historico</a>
+                        <a class="collapse-item {% if request.path == '/entregar' %}active{% endif %}" href="{% url 'entregar' %}">Resultados por Entregar</a>
+                        <a class="collapse-item {% if request.path == '/entregar' %}active{% endif %}" href="{% url 'entregar' %}">Historico</a>
                     </div>
                 </div>
             </li>
@@ -114,13 +114,21 @@
                 <div id="collapseAjustes" class="collapse" aria-labelledby="headingAjustes"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'procesar' %}">Examenes</a>
+                        <a class="collapse-item" href="{% url 'examenes' %}">Examenes</a>
                         <a class="collapse-item" href="{% url 'validar' %}">Insumos</a>
                     </div>
                 </div>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item {% if request.path == '/mineria' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'mineria' %}">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Mineria de datos</span></a>
+            </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+<!--             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false"
                     aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -139,7 +147,7 @@
                         <a class="collapse-item" href="{%static 'gest_lab/blank.html'%}">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Charts -->
  <!--            <li class="nav-item">
@@ -170,7 +178,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content"  style="background: white url('{%static 'gest_lab/img/mathilab-bg.jpg'%}'); background-repeat: no-repeat; background-position: center; height: 500px;">
+            <div id="content"  style="background: white url('{%static 'gest_lab/img/mathilab-bg.jpg'%}'); background-repeat: no-repeat; background-position: center; background-size: 35%;">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -222,14 +230,14 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+<!--                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                Counter - Alerts
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                            Dropdown - Alerts
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -270,17 +278,17 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
-                        </li>
+                        </li> -->
 
-                        <!-- Nav Item - Messages -->
+<!--                         Nav Item - Messages
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
+                                Counter - Messages
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
+                            Dropdown - Messages
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -336,7 +344,7 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
-                        </li>
+                        </li> -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -351,7 +359,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+<!--                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -362,11 +370,11 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Cerrar Sesion
                                 </a>
                             </div>
                         </li>
@@ -415,15 +423,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Listo por hoy?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Selecciona cerrar sesion para salir del sistema.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{%static 'gest_lab/login.html'%}">Logout</a>
+                    <a class="btn btn-primary" href="{% url 'login' %}">Cerrar Sesion</a>
                 </div>
             </div>
         </div>

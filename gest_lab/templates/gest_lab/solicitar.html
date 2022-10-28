@@ -35,7 +35,7 @@
 				</div>
 			</form>
 			{% endif %}
-            {% if cli %}
+			{% if cli %}
 			<div>
 				<div class="row">
 					<div class="col-md-3">
@@ -62,7 +62,7 @@
 						<p>Fecha de Registro: {{fecha}}</p>
 					</div>
 					<div class="col-md-3">
-						<p>Numero de Orden: </p>
+						<p>Numero de Orden: {{n_orden}}</p>
 					</div>
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 			<div class="col-md-1">
 				<label class="col-form-label font-weight-bold" for="categoria_select">Categoria</label>
 			</div>
-			<div class="col-md-4">					
+			<div class="col-md-4">
 				<select id="categoria_select" class="form-control">
 					<option disabled selected>Seleccione una opcion</option>
 					{% for c in categorias %}
@@ -115,108 +115,102 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								
-							</td>
+							<td>Hematologia Completa</td>
+							<td>5$</td>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
 						</tr>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td>Total</td>
+							<td>5$</td>
+							<td>
+								<button class="btn btn-success btn-icon-split">
+								<span class="icon text-white-50"><i class="fas fa-print"></i></span>
+								<span class="text">Generar Solicitud</span>
+								</button>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
-            
-            <!-- {{cli}} -->
-    </div>
+			<!-- {{cli}} -->
+	</div>
 </div>
 
 {% endif %}
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="m-0 font-weight-bold text-primary">Datos del Paciente</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-				<div id="paciente" >
-					<form method="POST">
-						{% csrf_token %}
-						<div class="row mb-3">
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.cedula.id_for_label}}">{{form.cedula.label}}</label>
-								{{form.cedula}}					
-							</div>
-							<div class="col-md-6">
-								<!-- check para no cedulado  -->
-							</div>
-						</div>
-						<div class="row mb-3">
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
-								{{form.nombre}}						
-							</div>
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.apellido.id_for_label}}">{{form.apellido.label}}</label>
-								{{form.apellido}}						
-							</div>
-						</div>
-						<div class="row mb-3">
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.f_nac.id_for_label}}">{{form.f_nac.label}}</label>
-									<div class="d-flex justify-content-center">
-										{{form.f_nac}}
-									</div>			
-							</div>
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.sexo.id_for_label}}">{{form.sexo.label}}</label>
-								<div>
-									<div class="form-check form-check-inline">
-										{% for x in form.sexo %}
-											<div class="mr-2">
-												{{x}}
-											<!-- <label class="form-check-label" for="{{x.id_for_label}}">{{x.label}}</label> -->
-											</div>
-										{% endfor %}
-									</div>
-								</div>	
-							</div>
-						</div>
-						<div class="row mb-3">
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.telefono.id_for_label}}">{{form.telefono.label}}</label>
-								{{form.telefono}}
-							</div>
-							<div class="col-md-6">
-								<label class="small mb-1 form-label" for="{{form.direccion.id_for_label}}">{{form.direccion.label}}</label>
-								{{form.direccion}}
-							</div>
-						</div>
-						<div class="row justify-content-center">
-							<div class="d-flex justify-content-center">
-								<button type="submit" class="btn btn-primary"> Guardar Cliente </button>
-							</div>
-						</div>	
-					</form>
-				</div>
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="m-0 font-weight-bold text-primary">Datos del Paciente</h6>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-    </div>
-  <!--     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
-  </div>
+			<div class="modal-body">
+				<form method="POST">
+					{% csrf_token %}
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.cedula.id_for_label}}">{{form.cedula.label}}</label>
+							{{form.cedula}}
+						</div>
+						<div class="col-md-6">
+							<!-- check para no cedulado  -->
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
+							{{form.nombre}}
+						</div>
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.apellido.id_for_label}}">{{form.apellido.label}}</label>
+							{{form.apellido}}
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.f_nac.id_for_label}}">{{form.f_nac.label}}</label>
+								<div class="d-flex justify-content-center">
+									{{form.f_nac}}
+								</div>
+						</div>
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.sexo.id_for_label}}">{{form.sexo.label}}</label>
+							<div>
+								<div class="form-check form-check-inline">
+									{% for x in form.sexo %}
+										<div class="mr-2">
+											{{x}}
+										<!-- <label class="form-check-label" for="{{x.id_for_label}}">{{x.label}}</label> -->
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.telefono.id_for_label}}">{{form.telefono.label}}</label>
+							{{form.telefono}}
+						</div>
+						<div class="col-md-6">
+							<label class="small mb-1 form-label" for="{{form.direccion.id_for_label}}">{{form.direccion.label}}</label>
+							{{form.direccion}}
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary"> Guardar Cliente </button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-<script>
-
-function nuevoExamen(){
-	console.log('examen');
-	var sel = document.getElementById('categoria_select').value;
-	console.log(sel);
-}
-</script>
-
 {% endblock %}

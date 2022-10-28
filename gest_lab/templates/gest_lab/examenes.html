@@ -1,5 +1,129 @@
 {% extends 'gest_lab/base.html' %}
 {% load static %}
 {% block content %}
-<h1>examenesconf</h1>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary" >Agregar Nuevo Examen</h6>
+	</div>
+	<div class="card-body">
+		<form action="">
+			<div class="row">
+				<div class="col-md-3">
+					<label class="form-label" for="examen_select">Categoria</label>
+					<select name="examen" id="examen_select" class="form-control">
+						<option disabled selected>Seleccione una Categoria</option>
+						{% for c in l_categorias %}
+						<option value="{{c.categoria_id}}">{{c.nombre}}</option>
+						{% endfor %}
+					</select>
+					<div class="mt-2">
+						<a href="" class="btn btn-success">
+							<i class="fas fa-plus"></i>
+						</a>
+						<a href="" class="btn btn-warning">
+							<i class="fas fa-edit"></i>
+						</a>
+						<a href="" class="btn btn-danger">
+							<i class="fas fa-trash"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label" for="examen_select">Examen</label>
+					<select name="examen" id="examen_select" class="form-control">
+						<option disabled selected>Seleccione una Categoria</option>
+						{% for e in l_examen %}
+						<option value="{{e.examen_id}}">{{e.nombre}}</option>
+						{% endfor %}
+					</select>
+					<div class="mt-2">
+						<a href="" class="btn btn-success">
+							<i class="fas fa-plus"></i>
+						</a>
+						<a href="" class="btn btn-warning">
+							<i class="fas fa-edit"></i>
+						</a>
+						<a href="" class="btn btn-danger">
+							<i class="fas fa-trash"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label class="form-label" for="examen_select">Prueba</label>
+					<select name="examen" id="examen_select" class="form-control">
+						<option disabled selected>Seleccione una Categoria</option>
+						{% for p in l_pruebas %}
+						<option value="{{p.prueba_id}}">{{p.nombre}}</option>
+						{% endfor %}
+					</select>
+					<div class="mt-2">
+						<a href="" class="btn btn-success">
+							<i class="fas fa-plus"></i>
+						</a>
+						<a href="" class="btn btn-warning">
+							<i class="fas fa-edit"></i>
+						</a>
+						<a href="" class="btn btn-danger">
+							<i class="fas fa-trash"></i>
+						</a>
+					</div>		
+				</div>
+				<div class="col-md-3">
+					<label class="form-label" for="examen_select">Tipo</label>
+					<select name="examen" id="examen_select" class="form-control">
+						<option disabled selected>Seleccione un Tipo</option>
+						<option value="1">Descriptivo</option>
+						<option value="2">Cualitativo</option>
+						<option value="3">Cuantitativo</option>
+					</select>
+					<div class="mt-2">
+						<a href="#" class="btn btn-primary btn-icon-split">
+							<span class="icon text-white-50">
+								<i class="fas fa-save"></i>
+							</span>
+							<span class="text">Guardar</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Examenes Guardados</h6>
+	</div>
+	<div class="card-body">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Categoria</th>
+					<th>Examen</th>
+					<th>Precio</th>
+<!-- 					<th>Prueba</th>
+					<th>Tipo</th> -->
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for l in l_ex %}
+				<tr>
+					<td>{{l.categoria__nombre}}</td>
+					<td>{{l.examen__nombre}}</td>
+					<td>{{l.examen__precio}}$</td>
+<!-- 					<td></td>
+					<td></td> -->
+					<td>
+						<a href="" class="btn btn-warning"><i class="fas fa-edit"></i><a>
+						<a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
 {% endblock %}

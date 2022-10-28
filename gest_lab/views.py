@@ -36,8 +36,9 @@ def Solicitar(request):
     for x in persona:
         x['edad'] = fecha_dt.year - x['f_nac'].year
     fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
+    n_orden = fecha_dt.strftime("%y%m%d") + ("-01")
 
-    return render(request, 'gest_lab/solicitar.html',{'dir_ex':'/solicitar','cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria})
+    return render(request, 'gest_lab/solicitar.html',{'cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria, 'n_orden':n_orden})
    
 def Procesar(request):
     #return HttpResponse('procesar')
@@ -76,7 +77,7 @@ def Validar(request):
         else:
             l_solicitud = Solicitud.objects.values('n_orden','cliente__cedula','examen__nombre').filter(cliente__cedula__startswith=ced,n_orden__endswith=n_ord,examen_id=t_ex,f_validado=None,f_entrega=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
         # print(l_solicitud.query)
-    return render(request, 'gest_lab/validar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_test})
+    return render(request, 'gest_lab/validar.html',{'dir_ex':'/validar', 'solicitud':l_solicitud, 'examenes':l_test})
 
     
 def Entregar(request):
@@ -93,7 +94,7 @@ def Entregar(request):
         else:
             l_solicitud = Solicitud.objects.values('n_orden','cliente__cedula','examen__nombre').filter(cliente__cedula__startswith=ced,n_orden__endswith=n_ord,examen_id=t_ex,f_entrega=None).exclude(f_validado=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
         # print(l_solicitud.query)
-    return render(request, 'gest_lab/entregar.html',{'dir_ex':'/procesar', 'solicitud':l_solicitud, 'examenes':l_test})
+    return render(request, 'gest_lab/entregar.html',{'dir_res':'/entregar', 'solicitud':l_solicitud, 'examenes':l_test})
 
     
 def Configuracion(request):
@@ -123,3 +124,16 @@ def Base(request):
 
 def Login(request):
     return render(request, 'gest_lab/login.html')
+
+def Mineria(request):
+    return render(request, 'gest_lab/mineria.html')
+
+def Examenes(request):
+    l_examen = Examen.objects.all()
+    l_categorias = Categoria.objects.all()
+    l_pruebas = Prueba.objects.all()
+
+    l_ex = Prueba.objects.values('categoria__nombre','examen__nombre','examen__precio').annotate(dcount=Count('examen__nombre')).order_by()
+
+
+    return render(request, 'gest_lab/examenes.html', {'l_examen':l_examen,'l_categorias':l_categorias,'l_pruebas':l_pruebas, 'l_ex':l_ex})

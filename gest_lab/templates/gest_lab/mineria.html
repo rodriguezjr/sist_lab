@@ -1,0 +1,188 @@
+{% extends 'gest_lab/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Prueba de Malaria y dengue a traves de mineria de datos</h6>		
+	</div>
+	<div class="card-body">
+		<p>Ingrese los datos de la hematologia para evaluarlos con el modelo de mineria de datos</p>
+	   <div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Linfocitos</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">%</label>
+			</div>
+		</div>
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">MID</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">%</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Neutrofilos</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">%</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Leucocitos</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">x10³ μl</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Eritrocitos</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">x10⁶ μl</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Hemoglobina</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">g/dl</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Hematocritos</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">%</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">MCV</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">fl</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">MCH</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">pg</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">MCHC</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">g/dl</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">Plaquetas</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">x10³ μl</label>
+			</div>
+		</div>
+
+		<div class="row my-2 w-100">
+			<div class="col-md-4">
+				<label for="" class="col-form-label">MPV</label>
+			</div>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Resultado">
+			</div>
+			<div class="col-md-4">
+				<label for="" class="col-form-label">fl</label>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		  Evaluar con el Modelo
+		</button>	
+	</div>
+</div>
+ 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="container-fluid">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="row">
+						<h5 class="modal-title" id="exampleModalLabel">Resultados de la evaluacion del modelo</h5>
+					</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+
+				</div>		
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

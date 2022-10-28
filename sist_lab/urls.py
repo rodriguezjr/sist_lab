@@ -31,5 +31,7 @@ urlpatterns = [
     path('insumos',views.Insumos, name='insumos'),
     path('base',views.Base, name='base'),
     path('login',views.Login, name='login'),
+    path('mineria',views.Mineria, name='mineria'),
+    path('examenes',views.Examenes, name='examenes'),
 
 ]
