@@ -8,7 +8,20 @@ from django.db.models import Count
 
 def Inicio(request):
     #return HttpResponse('inicio')
-    return render(request, 'gest_lab/inicio.html')
+    fecha_dt = datetime.date.today()
+    l_solicitud = Solicitud.objects.values('n_orden').filter(f_solicitud__date = fecha_dt).annotate(dcount=Count('n_orden')).order_by()
+    p_procesar = Solicitud.objects.values('n_orden').filter(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
+    p_validar = Solicitud.objects.values('n_orden').filter(f_validado=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
+    p_entregar = Solicitud.objects.values('n_orden').filter(f_entrega=None).exclude(f_validado=None).exclude(f_proceso=None).annotate(dcount=Count('n_orden')).order_by()
+    
+    c_examenes={
+        'l_solicitud':len(l_solicitud),
+        'p_procesar':len(p_procesar),
+        'p_validar':len(p_validar),
+        'p_entregar':len(p_entregar)
+    }
+    return render(request, 'gest_lab/inicio.html',{'c_examenes':c_examenes})
+
 
 def Solicitar(request):
     #return HttpResponse('solicitar')
