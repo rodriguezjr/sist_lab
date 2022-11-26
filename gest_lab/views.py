@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.template import Context
 from gest_lab.models import Cliente, Sexo, Solicitud, Prueba, Examen, Categoria
-from gest_lab.forms import FormularioCliente
+from gest_lab.forms import FormularioCliente, FormularioMineria
 import datetime
 from django.db.models import Count
 # Create your views here.
@@ -139,7 +139,16 @@ def Login(request):
     return render(request, 'gest_lab/login.html')
 
 def Mineria(request):
-    return render(request, 'gest_lab/mineria.html')
+    form = FormularioMineria()
+    if request.method == 'POST':
+        form = FormularioMineria(request.POST)
+        if form.is_valid():
+            cli = form.save()
+            cli.save()
+    else:
+        form = FormularioMineria()
+
+    return render(request, 'gest_lab/mineria.html', {'form':form})
 
 def Examenes(request):
     l_examen = Examen.objects.all()
