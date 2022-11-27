@@ -140,11 +140,10 @@ def Login(request):
 
 def Mineria(request):
     form = FormularioMineria()
-    if request.method == 'POST':
-        form = FormularioMineria(request.POST)
+    if request.method == 'GET':
+        form = FormularioMineria(request.GET)
         if form.is_valid():
-            cli = form.save()
-            cli.save()
+            form = FormularioMineria(request.GET)
     else:
         form = FormularioMineria()
 

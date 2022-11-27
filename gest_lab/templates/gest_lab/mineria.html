@@ -7,15 +7,15 @@
 		<h6 class="m-0 font-weight-bold text-primary">Prueba de Malaria y dengue a traves de mineria de datos</h6>		
 	</div>
 	<div class="card-body">
-        <form method="POST">
+        <form method="GET">
         	{% csrf_token %}
 			<p>Ingrese los datos de la hematologia para evaluarlos con el modelo de mineria de datos</p>
 		    <div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">Linfocitos</label>
+					<label for="" class="col-form-label" for="{{form.Linfocitos.id_for_label}}">{{form.Linfocitos.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.Linfocitos}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">%</label>
@@ -23,22 +23,10 @@
 			</div>
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">MID</label>
+					<label for="" class="col-form-label" for="{{form.MID.id_for_label}}">{{form.MID.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
-				</div>
-				<div class="col-md-4">
-					<label for="" class="col-form-label">%</label>
-				</div>
-			</div>
-
-			<div class="row my-2 w-100">
-				<div class="col-md-4">
-					<label for="" class="col-form-label">Neutrofilos</label>
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.MID}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">%</label>
@@ -47,10 +35,22 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">Leucocitos</label>
+					<label for="" class="col-form-label" for="{{form.Neutrofilos.id_for_label}}">{{form.Neutrofilos.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.Neutrofilos}}
+				</div>
+				<div class="col-md-4">
+					<label for="" class="col-form-label">%</label>
+				</div>
+			</div>
+
+			<div class="row my-2 w-100">
+				<div class="col-md-4">
+					<label for="" class="col-form-label" for="{{form.Leucocitos.id_for_label}}">{{form.Leucocitos.label}}</label>
+				</div>
+				<div class="col-md-4">
+					{{form.Leucocitos}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">x10³ μl</label>
@@ -59,10 +59,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">Eritrocitos</label>
+					<label for="" class="col-form-label" for="{{form.Eritrocitos.id_for_label}}">{{form.Eritrocitos.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.Eritrocitos}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">x10⁶ μl</label>
@@ -71,10 +71,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">Hemoglobina</label>
+					<label for="" class="col-form-label" for="{{form.Hemoglobina.id_for_label}}">{{form.Hemoglobina.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.Hemoglobina}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">g/dl</label>
@@ -83,10 +83,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">Hematocritos</label>
+					<label for="" class="col-form-label" for="{{form.Hematocritos.id_for_label}}">{{form.Hematocritos.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.Hematocritos}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">%</label>
@@ -95,10 +95,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">MCV</label>
+					<label for="" class="col-form-label" for="{{form.MCV.id_for_label}}">{{form.MCV.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.MCV}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">fl</label>
@@ -107,10 +107,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">MCH</label>
+					<label for="" class="col-form-label" for="{{form.MCH.id_for_label}}">{{form.MCH.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.MCH}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">pg</label>
@@ -119,10 +119,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">MCHC</label>
+					<label for="" class="col-form-label" for="{{form.MCHC.id_for_label}}">{{form.MCHC.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.MCHC}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">g/dl</label>
@@ -131,10 +131,10 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">Plaquetas</label>
+					<label for="" class="col-form-label" for="{{form.Plaquetas.id_for_label}}">{{form.Plaquetas.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.Plaquetas}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">x10³ μl</label>
@@ -143,22 +143,22 @@
 
 			<div class="row my-2 w-100">
 				<div class="col-md-4">
-					<label for="" class="col-form-label">MPV</label>
+					<label for="" class="col-form-label" for="{{form.MPV.id_for_label}}">{{form.MPV.label}}</label>
 				</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Resultado">
+					{{form.MPV}}
 				</div>
 				<div class="col-md-4">
 					<label for="" class="col-form-label">fl</label>
 				</div>
 			</div>	
-		</div>
-		<div class="card-footer">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			  Evaluar con el Modelo
-			</button>	
-		</div>
-	</form>
+			<div class="card-footer">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+					Evaluar con el Modelo
+				</button>	
+			</div>
+		</form>
+	</div>
 </div>
  
 <!-- Modal -->
