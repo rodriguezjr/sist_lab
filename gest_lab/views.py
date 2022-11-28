@@ -4,6 +4,7 @@ from gest_lab.models import Cliente, Sexo, Solicitud, Prueba, Examen, Categoria
 from gest_lab.forms import FormularioCliente, FormularioMineria
 import datetime
 from django.db.models import Count
+from gest_lab.static.evaluar_modelo import evaluacion
 # Create your views here.
 
 def Inicio(request):
@@ -139,15 +140,31 @@ def Login(request):
     return render(request, 'gest_lab/login.html')
 
 def Mineria(request):
+    resultado = []
     form = FormularioMineria()
     if request.method == 'GET':
         form = FormularioMineria(request.GET)
         if form.is_valid():
-            form = FormularioMineria(request.GET)
+            Linfocitos = request.GET.get('Linfocitos')
+            MID = request.GET.get('MID')
+            Neutrofilos = request.GET.get('Neutrofilos')
+            Leucocitos = request.GET.get('Leucocitos')
+            Eritrocitos = request.GET.get('Eritrocitos')
+            Hemoglobina = request.GET.get('Hemoglobina')
+            Hematocritos = request.GET.get('Hematocritos')
+            MCV = request.GET.get('MCV')
+            MCH = request.GET.get('MCH')
+            MCHC = request.GET.get('MCHC')
+            Plaquetas = request.GET.get('Plaquetas')
+            MPV = request.GET.get('MPV')
+            datos = [Linfocitos, MID, Neutrofilos, Leucocitos, Eritrocitos, Hemoglobina, Hematocritos, MCV, MCH, MCHC, Plaquetas, MPV]
+            resultado = evaluacion(datos)
     else:
         form = FormularioMineria()
 
-    return render(request, 'gest_lab/mineria.html', {'form':form})
+
+
+    return render(request, 'gest_lab/mineria.html', {'form':form, 'resultado':resultado})
 
 def Examenes(request):
     l_examen = Examen.objects.all()
