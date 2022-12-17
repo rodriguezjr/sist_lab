@@ -145,6 +145,7 @@ def Mineria(request):
     if request.method == 'GET':
         form = FormularioMineria(request.GET)
         if form.is_valid():
+            Edad = request.GET.get('Edad')
             Linfocitos = request.GET.get('Linfocitos')
             MID = request.GET.get('MID')
             Neutrofilos = request.GET.get('Neutrofilos')
@@ -157,7 +158,7 @@ def Mineria(request):
             MCHC = request.GET.get('MCHC')
             Plaquetas = request.GET.get('Plaquetas')
             MPV = request.GET.get('MPV')
-            datos = [Linfocitos, MID, Neutrofilos, Leucocitos, Eritrocitos, Hemoglobina, Hematocritos, MCV, MCH, MCHC, Plaquetas, MPV]
+            datos = [Edad, Linfocitos, MID, Neutrofilos, Leucocitos, Eritrocitos, Hemoglobina, Hematocritos, MCV, MCH, MCHC, Plaquetas, MPV]
             resultado = evaluacion(datos)
     else:
         form = FormularioMineria()

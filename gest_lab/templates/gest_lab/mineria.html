@@ -12,6 +12,17 @@
 			<p>Ingrese los datos de la hematologia para evaluarlos con el modelo de mineria de datos</p>
 		    <div class="row my-2 w-100">
 				<div class="col-md-4">
+					<label for="" class="col-form-label" for="{{form.Edad.id_for_label}}">{{form.Edad.label}}</label>
+				</div>
+				<div class="col-md-4">
+					{{form.Edad}}
+				</div>
+				<div class="col-md-4">
+					<label for="" class="col-form-label">años</label>
+				</div>
+			</div>
+		    <div class="row my-2 w-100">
+				<div class="col-md-4">
 					<label for="" class="col-form-label" for="{{form.Linfocitos.id_for_label}}">{{form.Linfocitos.label}}</label>
 				</div>
 				<div class="col-md-4">
@@ -179,7 +190,32 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					{{resultado}}
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Resultado</th>
+								<th>Probabilidad</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Sano</td>
+								<td>{{resultado.0}}</td>
+							</tr>
+							<tr>
+								<td>Dengue</td>
+								<td>{{resultado.1}}</td>
+							</tr>
+							<tr>
+								<td>Vivax</td>
+								<td>{{resultado.2}}</td>
+							</tr>
+							<tr>
+								<td>Falciparum</td>
+								<td>{{resultado.3}}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>		
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
