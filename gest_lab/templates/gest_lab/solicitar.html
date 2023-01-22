@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 
+<script src="{% static 'funciones.js' %}"></script>
+
 <div id="paciente" class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">Registro de Examenes</h6>
@@ -93,12 +95,12 @@
 				<select id="examen_select" class="form-control">
 					<option disabled selected>Seleccione una opcion</option>
 					{% for e in examenes %}
-						<option value="{{e.id}}">{{e.nombre}}</option>
+						<option value="{{e.id}}" label="{{e.nombre}}">{{e.precio}}</option>
 					{% endfor %}
 				</select>
 			</div>
 			<div class="col-md-2">
-				<button class="btn btn-success btn-icon-split" id="agregar_btn" onclick="nuevoExamen()">
+				<button class="btn btn-success btn-icon-split" id="agregar_btn" onclick="agregar()">
 					<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
 					<span class="text">Agregar</span>
 				</button>
@@ -115,17 +117,17 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody id="txxx">
+<!-- 						<tr>
 							<td>Hematologia Completa</td>
 							<td>5$</td>
-							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash"></i></button></td>
-						</tr>
+							<td><button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash" onclick="onClickRemove(this)"></i></button></td>
+						</tr> -->
 					</tbody>
 					<tfoot>
 						<tr>
 							<td>Total</td>
-							<td>5$</td>
+							<td>$</td>
 							<td>
 								<button class="btn btn-success btn-icon-split">
 								<span class="icon text-white-50"><i class="fas fa-print"></i></span>
@@ -213,4 +215,37 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	
+function agregar() {
+  // alert("desde el archivo");
+  var examen = document.getElementById("examen_select");
+  var nombre = examen.options[examen.selectedIndex].label;
+  var precio = examen.options[examen.selectedIndex].text;
+  var id = examen.options[examen.selectedIndex].value;
+  var table = document.getElementById("txxx");
+  var row = table.insertRow(-1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3)
+  cell1.innerHTML = nombre;
+  cell2.innerHTML = precio;
+  cell3.innerHTML = '<button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash" onclick="onClickRemove(this)"></i></button>'
+  cell4.innerHTML = id
+
+}
+
+function onClickRemove(deleteButton) {
+  let row = deleteButton.parentElement.parentElement.parentElement;
+  row.parentNode.removeChild(row);
+  // updateSubTotal(); // Call after delete
+}
+
+</script>
+
+
+
 {% endblock %}
