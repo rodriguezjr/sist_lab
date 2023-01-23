@@ -48,7 +48,7 @@ def Solicitar(request):
 
     fecha_dt = datetime.datetime.now()
     for x in persona:
-        x['edad'] = fecha_dt.year - x['f_nac'].year
+        x['edad'] = fecha_dt.year - x['f_nac'].year - ((fecha_dt.month,fecha_dt.day) < (x['f_nac'].month,x['f_nac'].day))
     fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
     n_orden = fecha_dt.strftime("%y%m%d") + ("-01")
 
