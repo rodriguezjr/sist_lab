@@ -259,13 +259,13 @@ function agregar() {
 		var cell4 = row.insertCell(3)
 		cell1.innerHTML = nombre;
 		cell2.innerHTML = precio;
-		cell3.innerHTML = '<button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash" onclick="onClickRemove(this)"></i></button>';
+		cell3.innerHTML = '<button class="btn btn-danger btn-circle btn-sm" type="button"><i class="fas fa-trash" onclick="eliminar(this)"></i></button>';
 		cell4.innerHTML = id;
 		sumarTotal();
 	}
 }
 
-function onClickRemove(deleteButton) {
+function eliminar(deleteButton) {
 	let row = deleteButton.parentElement.parentElement.parentElement;
 	// elimino del arreglo de examenes el slecciono para borrar
 	arr = arr.filter(item => item != row.lastChild.textContent);
