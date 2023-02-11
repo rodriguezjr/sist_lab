@@ -9,6 +9,7 @@
 		<h6 class="m-0 font-weight-bold text-primary">Registro de Examenes</h6>
 	</div>
 		<div class="card-body">
+			{{POST}}
 			{% if not cli %}
 			<form method="GET">
 				{% csrf_token %}
@@ -129,10 +130,17 @@
 							<td>Total</td>
 							<td id="total"></td>
 							<td>
-								<button class="btn btn-success btn-icon-split">
-								<span class="icon text-white-50"><i class="fas fa-print"></i></span>
-								<span class="text">Generar Solicitud</span>
-								</button>
+								<form method="POST" id="generar_sol">
+									{% csrf_token %}
+									<input type="hidden" class="form-control" name='n_orden' value={{n_orden}}>
+									<input type="hidden" class="form-control" name='fecha' value={{fecha}}>
+									<input type="hidden" class="form-control" name='id_cliente' value={{cli.0.id}}>
+
+									<button class="btn btn-success btn-icon-split">
+									<span class="icon text-white-50"><i class="fas fa-print"></i></span>
+									<span class="text">Generar Solicitud</span>
+									</button>
+								</form>
 							</td>
 						</tr>
 					</tfoot>
@@ -221,6 +229,15 @@
 
 var arr = []
 
+var form=document.getElementById('generar_sol');//retrieve the form as a DOM element
+
+var input_examenes = document.createElement('input');//prepare a new input DOM element
+input_examenes.setAttribute('name', 'examenes');//set the param name
+input_examenes.setAttribute('type', 'hidden')//set the type, like "hidden" or other
+
+
+// form.submit();//send with added input
+
 function sumarTotal() {
 	var table = document.getElementById("txxx");
 	let subTotal = Array.from(table.rows).slice(0).reduce((total, row) => {
@@ -235,6 +252,9 @@ function sumarTotal() {
     }
 
 	console.log(arr);
+	input_examenes.setAttribute('value', arr);//set the value
+	form.appendChild(input_examenes);//append the input to the form
+
 }
 	
 function agregar() {
@@ -271,7 +291,6 @@ function eliminar(deleteButton) {
 	arr = arr.filter(item => item != row.lastChild.textContent);
 	// elmino el examen de la solicitud
 	row.parentNode.removeChild(row);
-
 
 	sumarTotal();
 }

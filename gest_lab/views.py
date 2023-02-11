@@ -52,7 +52,7 @@ def Solicitar(request):
     fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
     n_orden = fecha_dt.strftime("%y%m%d") + ("-01")
 
-    return render(request, 'gest_lab/solicitar.html',{'cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria, 'n_orden':n_orden})
+    return render(request, 'gest_lab/solicitar.html',{'POST':request.POST,'cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria, 'n_orden':n_orden})
    
 def Procesar(request):
     #return HttpResponse('procesar')

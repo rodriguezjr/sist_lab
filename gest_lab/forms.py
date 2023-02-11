@@ -12,7 +12,6 @@ class FormularioCliente(forms.ModelForm):
     direccion = forms.CharField(required=True, label='Direccion', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     telefono = forms.CharField(label='Telefono', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
 
-
     class Meta():
         model = Cliente
         fields =['cedula','nombre','apellido','f_nac','direccion','telefono','sexo']
@@ -32,3 +31,5 @@ class FormularioMineria(forms.Form):
     MCHC = forms.CharField(required=True, label='MCHC', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     Plaquetas = forms.CharField(required=True, label='Plaquetas', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     MPV = forms.CharField(required=True, label='MPV', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
+
+    
