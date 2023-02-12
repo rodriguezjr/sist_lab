@@ -17,7 +17,6 @@ class FormularioCliente(forms.ModelForm):
         fields =['cedula','nombre','apellido','f_nac','direccion','telefono','sexo']
 
 class FormularioMineria(forms.Form):
-    
     Edad = forms.CharField(required=True, label='Edad', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     Linfocitos = forms.CharField(required=True, label='Linfocitos', widget=forms.TextInput(attrs={ 'class': 'form-control' }))
     MID = forms.CharField(required=True, label='MID', widget=forms.TextInput(attrs={ 'class': 'form-control' }))

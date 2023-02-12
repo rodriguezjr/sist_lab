@@ -6,6 +6,10 @@ import datetime
 from django.db.models import Count
 from gest_lab.static.evaluar_modelo import evaluacion
 # Create your views here.
+def separar(frase):
+	arreglo = frase.split(sep=',')
+	return arreglo
+
 
 def Inicio(request):
     #return HttpResponse('inicio')
@@ -27,13 +31,30 @@ def Inicio(request):
 def Solicitar(request):
     #return HttpResponse('solicitar')
     form = FormularioCliente()
+    lista_registros = []
     if request.method == 'POST':
-        form = FormularioCliente(request.POST)
-        if form.is_valid():
-            cli = form.save()
-            cli.save()
-    else:
-        form = FormularioCliente()
+        post = request.POST
+        if 'cedula' in post:
+            form = FormularioCliente()
+            form = FormularioCliente(request.POST)
+            if form.is_valid():
+                cli = form.save()
+                cli.save()
+        elif 'examenes' in post:
+            examenes = separar(post['examenes'])
+            print(examenes)
+            for e in examenes:
+                pruebas = Prueba.objects.filter(examen=e).values('id')
+                for p in pruebas:
+                    solicitud = Solicitud(
+                    n_orden= post['n_orden'],
+                    cliente_id= int(post['id_cliente']),
+                    solicitado_por_id= 1,
+                    examen_id= int(e),
+                    prueba_id= p['id'])
+                    lista_registros.append(solicitud)
+            print(lista_registros)
+            Solicitud.objects.bulk_create(lista_registros)
 
     persona = {}
     l_examen = {}
@@ -50,9 +71,11 @@ def Solicitar(request):
     for x in persona:
         x['edad'] = fecha_dt.year - x['f_nac'].year - ((fecha_dt.month,fecha_dt.day) < (x['f_nac'].month,x['f_nac'].day))
     fecha = fecha_dt.strftime("%Y-%m-%d %H:%M")
-    n_orden = fecha_dt.strftime("%y%m%d") + ("-01")
+    n_ordenes = Solicitud.objects.values('n_orden').filter(f_solicitud__date = datetime.date.today()).annotate(dcount=Count('n_orden')).order_by()
+    print(len(n_ordenes))
+    n_orden = fecha_dt.strftime("%y%m%d") + '-' +str((len(n_ordenes))+1)
 
-    return render(request, 'gest_lab/solicitar.html',{'POST':request.POST,'cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria, 'n_orden':n_orden})
+    return render(request, 'gest_lab/solicitar.html',{'sol':lista_registros, 'POST':request.POST,'cli':persona, 'fecha':fecha, 'form':form, 'examenes':l_examen, 'categorias':l_categoria, 'n_orden':n_orden})
    
 def Procesar(request):
     #return HttpResponse('procesar')
